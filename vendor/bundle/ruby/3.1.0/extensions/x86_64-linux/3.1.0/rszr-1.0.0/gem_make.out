@@ -1,0 +1,20 @@
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/rszr-1.0.0/ext/rszr
+/usr/share/rvm/rubies/ruby-3.1.3/bin/ruby -I /usr/share/rvm/rubies/ruby-3.1.3/lib/ruby/3.1.0 extconf.rb
+checking for Imlib2.h... yes
+checking for imlib_set_cache_size() in -lImlib2... yes
+creating Makefile
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/rszr-1.0.0/ext/rszr
+make DESTDIR\= sitearchdir\=./.gem.20230424-55324-rypr4w sitelibdir\=./.gem.20230424-55324-rypr4w clean
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/rszr-1.0.0/ext/rszr
+make DESTDIR\= sitearchdir\=./.gem.20230424-55324-rypr4w sitelibdir\=./.gem.20230424-55324-rypr4w
+compiling errors.c
+In file included from errors.c:4:
+rszr.h:6:10: fatal error: libexif/exif-data.h: No existe el archivo o el directorio
+    6 | #include <libexif/exif-data.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:247: errors.o] Error 1
+
+make failed, exit code 2

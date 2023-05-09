@@ -1,0 +1,12 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - gemfiles/vendor/**/*
+
+Style/MethodCallWithArgsParentheses:
+  Exclude:
+    - Gemfile
+    - gemfiles/*

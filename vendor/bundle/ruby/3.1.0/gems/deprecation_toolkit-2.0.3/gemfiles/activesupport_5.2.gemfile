@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+@activesupport_gem_requirement = "~> 5.2"
+
+eval_gemfile "../Gemfile"

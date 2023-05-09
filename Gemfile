@@ -19,8 +19,8 @@ gem 'unicorn', group: :unicorn
 
 # core - supported ORMs
 gem 'activerecord-nulldb-adapter', group: :nulldb
-gem 'mysql2', group: :mysql
-gem 'pg', '~> 1.2.0', group: :postgres
+# gem 'mysql2', group: :mysql
+gem 'pg', group: :postgres # '~> 1.2.0', group: :postgres
 
 # core - asynchrous task execution
 gem 'daemons'
@@ -51,7 +51,8 @@ gem 'graphql'
 gem 'graphql-batch', require: 'graphql/batch'
 
 # core - image processing
-gem 'rszr'
+# gem 'rszr', '0.5.2'
+gem 'rszr', git: 'https://github.com/mtgrosser/rszr'
 
 # core - use same timezone data on any host
 gem 'tzinfo-data'

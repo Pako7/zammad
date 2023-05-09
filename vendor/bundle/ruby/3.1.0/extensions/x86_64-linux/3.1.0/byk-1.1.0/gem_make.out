@@ -1,0 +1,15 @@
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/byk-1.1.0/ext/byk
+/usr/share/rvm/rubies/ruby-3.1.3/bin/ruby -I /usr/share/rvm/rubies/ruby-3.1.3/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/byk-1.1.0/ext/byk
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-9plu6a sitelibdir\=./.gem.20230508-5351-9plu6a clean
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/byk-1.1.0/ext/byk
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-9plu6a sitelibdir\=./.gem.20230508-5351-9plu6a
+compiling byk.c
+linking shared-object byk_native.so
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/byk-1.1.0/ext/byk
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-9plu6a sitelibdir\=./.gem.20230508-5351-9plu6a install
+/usr/bin/install -m 0755 byk_native.so ./.gem.20230508-5351-9plu6a

@@ -1,0 +1,13 @@
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+/usr/share/rvm/rubies/ruby-3.1.3/bin/ruby -I /usr/share/rvm/rubies/ruby-3.1.3/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-7zwnes sitelibdir\=./.gem.20230508-5351-7zwnes clean
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-7zwnes sitelibdir\=./.gem.20230508-5351-7zwnes
+make: No se hace nada para 'all'.
+
+current directory: /home/dell/zammad/vendor/bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230508-5351-7zwnes sitelibdir\=./.gem.20230508-5351-7zwnes install

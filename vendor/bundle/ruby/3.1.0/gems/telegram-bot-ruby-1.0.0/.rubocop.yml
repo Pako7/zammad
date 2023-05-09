@@ -1,0 +1,27 @@
+---
+require:
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - bin/console
+
+Metrics/BlockLength:
+  AllowedMethods:
+    - context
+    - describe
+    - task
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - telegram-bot-ruby.gemspec
+    - examples/*.rb
