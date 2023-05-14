@@ -15,6 +15,7 @@ module HasCollectionUpdate
 define required permissions to push collection to web app
 
 class Model < ApplicationModel
+  include AsMultitenant
   include HasCollectionUpdate
   collection_push_permission('some_permission')
 end

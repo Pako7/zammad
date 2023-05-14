@@ -6,6 +6,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     return if ActiveRecord::Base.connection.table_exists? 'knowledge_bases'
 
     create_table :knowledge_bases do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :iconset, limit: 30, null: false
 
       t.string :color_highlight,   limit: 25, null: false
@@ -24,6 +25,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     end
 
     create_table :knowledge_base_locales do |t|
+      t.belongs_to :account, index: true, null: false
       t.belongs_to :knowledge_base, null: false, foreign_key: { to_table: :knowledge_bases }
       t.belongs_to :system_locale,  null: false, foreign_key: { to_table: :locales }
       t.boolean    :primary, null: false, default: false
@@ -33,6 +35,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     add_index :knowledge_base_locales, %i[system_locale_id knowledge_base_id], name: 'index_kb_locale_on_kb_system_locale_kb', unique: true
 
     create_table :knowledge_base_translations do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :title, limit: 250, null: false
       t.string :footer_note,       null: false
 
@@ -44,6 +47,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     add_index :knowledge_base_translations, %i[kb_locale_id knowledge_base_id], name: 'index_kb_t_on_kb_locale_kb', unique: true
 
     create_table :knowledge_base_categories do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :knowledge_base, null: false, foreign_key: { to_table: :knowledge_bases }
       t.references :parent,         null: true,  foreign_key: { to_table: :knowledge_base_categories }
 
@@ -54,6 +58,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     end
 
     create_table :knowledge_base_category_translations do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :title, limit: 250, null: false
 
       t.references :kb_locale, null: false, foreign_key: { to_table: :knowledge_base_locales }
@@ -64,6 +69,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     add_index :knowledge_base_category_translations, %i[kb_locale_id category_id], name: 'index_kb_c_t_on_kb_locale_category', unique: true
 
     create_table :knowledge_base_answers do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :category, null: false, foreign_key: { to_table: :knowledge_base_categories }
 
       t.boolean :promoted,      null: false, default: false
@@ -81,10 +87,12 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     end
 
     create_table :knowledge_base_answer_translation_contents do |t| # rubocop:disable Rails/CreateTableWithTimestamps
+      t.belongs_to :account, index: true, null: false
       t.text :body, null: true, limit: 20.megabytes + 1
     end
 
     create_table :knowledge_base_answer_translations do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :title, limit: 250, null: false
 
       t.references :kb_locale, null: false, foreign_key: { to_table: :knowledge_base_locales }
@@ -99,6 +107,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     add_index :knowledge_base_answer_translations, %i[kb_locale_id answer_id], name: 'index_kb_a_t_on_kb_locale_answer', unique: true
 
     create_table :knowledge_base_menu_items do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :kb_locale, null: false, foreign_key: { to_table: :knowledge_base_locales, on_delete: :cascade }
       t.string     :location,  null: false, index: true
       t.integer    :position,  null: false, index: true
@@ -110,6 +119,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
     end
 
     create_table :knowledge_base_permissions do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :permissionable, polymorphic: true, null: false, index: { name: 'index_knowledge_base_permissions_on_permissionable' }
       t.references :role, null: false, foreign_key: { to_table: :roles }
 

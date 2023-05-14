@@ -47,6 +47,7 @@ module ChecksHtmlSanitized
 serve method to mark HTML attributes that need to get sanitized
 
 class Model < ApplicationModel
+  include AsMultitenant
   include Sanitized
   sanitized_html :body
 end

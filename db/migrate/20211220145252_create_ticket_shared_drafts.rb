@@ -6,6 +6,7 @@ class CreateTicketSharedDrafts < ActiveRecord::Migration[5.0]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :ticket_shared_draft_zooms do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :ticket, null: false, foreign_key: { to_table: :tickets }
       t.text       :new_article
       t.text       :ticket_attributes
@@ -17,6 +18,7 @@ class CreateTicketSharedDrafts < ActiveRecord::Migration[5.0]
     end
 
     create_table :ticket_shared_draft_starts do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :group, null: false, foreign_key: { to_table: :groups }
       t.string     :name
       t.text       :content

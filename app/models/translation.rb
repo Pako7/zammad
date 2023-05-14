@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Translation < ApplicationModel
+  include AsMultitenant
   include Translation::SynchronizesFromPo
 
   before_create :set_initial

@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class KnowledgeBase::Locale < ApplicationModel
+  include AsMultitenant
   belongs_to :knowledge_base, inverse_of: :kb_locales, touch: true
   belongs_to :system_locale, inverse_of: :knowledge_base_locales, class_name: '::Locale'
 

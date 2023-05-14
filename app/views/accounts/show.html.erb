@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Responsible:</strong>
+  <%= @account.responsible %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @account.subdomain %>
+</p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @account.company_name %>
+</p>
+
+<p>
+  <strong>Comercial name:</strong>
+  <%= @account.comercial_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @account.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @account.email %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @account.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

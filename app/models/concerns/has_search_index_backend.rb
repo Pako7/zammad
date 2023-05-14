@@ -154,6 +154,7 @@ returns
 serve method to ignore model attributes in search index
 
 class Model < ApplicationModel
+  include AsMultitenant
   include HasSearchIndexBackend
   search_index_attributes_ignored :password, :image
 end

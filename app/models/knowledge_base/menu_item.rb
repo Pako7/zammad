@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class KnowledgeBase::MenuItem < ApplicationModel
+  include AsMultitenant
   belongs_to :kb_locale, class_name: 'KnowledgeBase::Locale', inverse_of: :menu_items, touch: true
 
   validates :title,    presence: true, length:    { maximum: 100 }

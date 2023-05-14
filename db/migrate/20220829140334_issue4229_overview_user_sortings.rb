@@ -5,6 +5,7 @@ class Issue4229OverviewUserSortings < ActiveRecord::Migration[6.1]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :user_overview_sortings do |t|
+      t.belongs_to :account, index: true, null: false
       t.column :user_id, :integer, null: false
       t.column :overview_id, :integer, null: false
       t.column :prio, :integer, null: false

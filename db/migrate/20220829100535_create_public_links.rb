@@ -17,6 +17,7 @@ class CreatePublicLinks < ActiveRecord::Migration[6.1]
 
   def add_table
     create_table :public_links do |t|
+      t.belongs_to :account, index: true, null: false
       t.string  :link, limit: 500,        null: false
       t.string  :title, limit: 200,       null: false
       t.string  :description, limit: 200, null: true

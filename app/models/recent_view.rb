@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class RecentView < ApplicationModel
+  include AsMultitenant
   include RecentView::Assets
 
   # rubocop:disable Rails/InverseOf

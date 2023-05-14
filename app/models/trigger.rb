@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Trigger < ApplicationModel
+  include AsMultitenant
   include ChecksConditionValidation
   include ChecksHtmlSanitized
   include CanSeed

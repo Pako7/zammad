@@ -3,6 +3,7 @@
 class Store
   module Provider
     class DB < ApplicationModel
+      include AsMultitenant
       self.table_name = 'store_provider_dbs'
 
       def self.add(data, sha)

@@ -2,6 +2,7 @@
 
 module Cti
   class CallerId < ApplicationModel
+    include AsMultitenant
     self.table_name = 'cti_caller_ids'
 
     DEFAULT_COUNTRY_ID = '49'.freeze

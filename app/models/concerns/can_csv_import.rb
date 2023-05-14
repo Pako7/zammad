@@ -314,6 +314,7 @@ returns
 serve method to ignore model based on id
 
 class Model < ApplicationModel
+  include AsMultitenant
   include CanCsvImport
   csv_object_ids_ignored(1, 2, 3)
 end
@@ -331,6 +332,7 @@ end
 serve method to ignore model attributes
 
 class Model < ApplicationModel
+  include AsMultitenant
   include CanCsvImport
   csv_attributes_ignored :password,
     :image_source,
@@ -356,6 +358,7 @@ end
 serve method to define if delete option is possible or not
 
 class Model < ApplicationModel
+  include AsMultitenant
   include CanCsvImport
   csv_delete_possible true
 

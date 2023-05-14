@@ -57,6 +57,7 @@ class SMIMESupport < ActiveRecord::Migration[5.2]
     )
 
     create_table :smime_certificates do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :subject,            limit: 500,  null: false
       t.string :doc_hash,           limit: 250,  null: false
       t.string :fingerprint,        limit: 250,  null: false

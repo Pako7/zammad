@@ -2,6 +2,7 @@
 
 module Cti
   class Log < ApplicationModel
+    include AsMultitenant
     include HasSearchIndexBackend
 
     self.table_name = 'cti_logs'

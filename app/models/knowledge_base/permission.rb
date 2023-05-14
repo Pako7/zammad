@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class KnowledgeBase::Permission < ApplicationModel
+  include AsMultitenant
   belongs_to :permissionable, polymorphic: true, touch: true
   belongs_to :role
 

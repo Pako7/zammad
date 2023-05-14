@@ -72,6 +72,7 @@ delete object activity stream, will be executed automatically
 serve method to ignore model attributes in activity stream and/or limit activity stream permission
 
 class Model < ApplicationModel
+  include AsMultitenant
   include HasActivityStreamLog
   activity_stream_permission 'admin.user'
   activity_stream_attributes_ignored :create_article_type_id, :preferences

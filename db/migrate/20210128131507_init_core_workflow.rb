@@ -15,6 +15,7 @@ class InitCoreWorkflow < ActiveRecord::Migration[5.2]
 
   def add_table # rubocop:disable Metrics/AbcSize
     create_table :core_workflows do |t|
+      t.belongs_to :account, index: true, null: false
       t.string :name,                     limit: 100, null: false
       t.string :object,                   limit: 100, null: true
       t.text   :preferences,              limit: 500.kilobytes + 1, null: true

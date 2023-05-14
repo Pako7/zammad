@@ -15,4 +15,6 @@ class ApplicationController < ActionController::Base
   include ApplicationController::LogsHttpAccess
   include ApplicationController::Authorizes
   include ApplicationController::Klass
+
+  set_current_tenant_by_subdomain(:account, :subdomain)
 end

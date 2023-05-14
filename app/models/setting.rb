@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Setting < ApplicationModel
+  include AsMultitenant
   store         :options
   store         :state_current
   store         :state_initial
@@ -31,6 +32,9 @@ set config setting
   Setting.set('some_config_name', some_value)
 
 =end
+
+  def create_if_not_exists(attrs = {})
+  end
 
   def self.set(name, value)
     setting = Setting.find_by(name: name)

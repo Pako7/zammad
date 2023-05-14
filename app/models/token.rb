@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Token < ApplicationModel
+  include AsMultitenant
   before_create :generate_token
   belongs_to    :user, optional: true
   store         :preferences

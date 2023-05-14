@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Locale < ApplicationModel
+  include AsMultitenant
   has_many :knowledge_base_locales, inverse_of: :system_locale, dependent: :restrict_with_error,
                                     class_name: 'KnowledgeBase::Locale', foreign_key: :system_locale_id
 

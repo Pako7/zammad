@@ -6,6 +6,7 @@ class CreateKnowledgeBasePermissions < ActiveRecord::Migration[5.0]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :knowledge_base_permissions do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :permissionable, polymorphic: true, null: false, index: { name: 'index_knowledge_base_permissions_on_permissionable' }
       t.references :role, null: false, foreign_key: { to_table: :roles }
 

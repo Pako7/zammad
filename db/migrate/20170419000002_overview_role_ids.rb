@@ -7,6 +7,7 @@ class OverviewRoleIds < ActiveRecord::Migration[4.2]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :overviews_roles, id: false do |t|
+      t.belongs_to :account, index: true, null: false
       t.integer :overview_id
       t.integer :role_id
     end

@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Package < ApplicationModel
+  include AsMultitenant
   @@root = Rails.root.to_s # rubocop:disable Style/ClassVars
 
 =begin

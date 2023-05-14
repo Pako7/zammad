@@ -7,6 +7,7 @@ class MentionInit < ActiveRecord::Migration[5.2]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :mentions do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :mentionable,      polymorphic: true, null: false
       t.column :user_id,              :integer, null: false
       t.column :updated_by_id,        :integer, null: false

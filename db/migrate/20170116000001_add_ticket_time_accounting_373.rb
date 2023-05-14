@@ -8,6 +8,7 @@ class AddTicketTimeAccounting373 < ActiveRecord::Migration[4.2]
 
     drop_table :ticket_time_accounting
     create_table :ticket_time_accountings do |t|
+      t.belongs_to :account, index: true, null: false
       t.references :ticket,                                       null: false
       t.references :ticket_article,                               null: true
       t.column :time_unit,      :decimal, precision: 6, scale: 2, null: false
