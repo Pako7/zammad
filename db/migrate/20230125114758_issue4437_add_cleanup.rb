@@ -11,8 +11,8 @@ class Issue4437AddCleanup < ActiveRecord::Migration[6.1]
       period:        1.day,
       prio:          2,
       active:        true,
-      updated_by_id: 1,
-      created_by_id: 1,
+      updated_by_id: User.first.id,
+      created_by_id: User.first.id,
       last_run:      Time.zone.now,
     )
   end

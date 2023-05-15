@@ -27,8 +27,8 @@ Scheduler.create_if_not_exists(
   period:        30.seconds,
   prio:          1,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Check 'Channel' streams."),
@@ -36,8 +36,8 @@ Scheduler.create_if_not_exists(
   period:        60.seconds,
   prio:          1,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Generate 'Session' data."),
@@ -45,8 +45,8 @@ Scheduler.create_if_not_exists(
   period:        60.seconds,
   prio:          1,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Execute planned jobs.'),
@@ -54,8 +54,8 @@ Scheduler.create_if_not_exists(
   period:        5.minutes,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Clean up expired sessions.'),
@@ -63,8 +63,8 @@ Scheduler.create_if_not_exists(
   period:        60 * 60 * 12,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Delete old activity stream entries.'),
@@ -72,8 +72,8 @@ Scheduler.create_if_not_exists(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Delete old 'RecentView' entries."),
@@ -81,8 +81,8 @@ Scheduler.create_if_not_exists(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Delete old online notification entries.'),
@@ -90,8 +90,8 @@ Scheduler.create_or_update(
   period:        2.hours,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Delete old token entries.'),
@@ -99,8 +99,8 @@ Scheduler.create_or_update(
   period:        30.days,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Close chat sessions where participants are offline.'),
@@ -108,8 +108,8 @@ Scheduler.create_or_update(
   period:        15.minutes,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Clean up closed sessions.'),
@@ -117,8 +117,8 @@ Scheduler.create_or_update(
   period:        5.days,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Clean up ActiveJob locks.'),
@@ -126,8 +126,8 @@ Scheduler.create_or_update(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Clean up dead sessions.'),
@@ -135,8 +135,8 @@ Scheduler.create_or_update(
   period:        1.hour,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Sync calendars with iCal feeds.'),
@@ -144,8 +144,8 @@ Scheduler.create_or_update(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Generate user-based stats.'),
@@ -153,8 +153,8 @@ Scheduler.create_or_update(
   period:        11.minutes,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Delete old stats store entries.'),
@@ -162,8 +162,8 @@ Scheduler.create_or_update(
   period:        31.days,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Clean up 'HttpLog'."),
@@ -171,8 +171,8 @@ Scheduler.create_if_not_exists(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Clean up 'Cti::Log'."),
@@ -180,8 +180,8 @@ Scheduler.create_if_not_exists(
   period:        1.month,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __("Clean up 'DataPrivacyTask'."),
@@ -189,8 +189,8 @@ Scheduler.create_if_not_exists(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_or_update(
   name:          __('Delete obsolete classic IMAP backup.'),
@@ -198,8 +198,8 @@ Scheduler.create_or_update(
   period:        1.day,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Execute import jobs.'),
@@ -207,8 +207,8 @@ Scheduler.create_if_not_exists(
   period:        1.hour,
   prio:          1,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id
 )
 Scheduler.create_if_not_exists(
   name:          __('Handle data privacy tasks.'),
@@ -217,8 +217,8 @@ Scheduler.create_if_not_exists(
   last_run:      Time.zone.now,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Delete old upload cache entries.'),
@@ -226,8 +226,8 @@ Scheduler.create_if_not_exists(
   period:        1.month,
   prio:          2,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Clean up cache.'),
@@ -252,8 +252,8 @@ Scheduler.create_if_not_exists(
       '0' => true
     }
   },
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Update exchange oauth 2 token.'),
@@ -261,8 +261,8 @@ Scheduler.create_if_not_exists(
   period:        10.minutes,
   prio:          1,
   active:        true,
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.create_if_not_exists(
   name:          __('Clean up mobile taskbars.'),
@@ -287,6 +287,6 @@ Scheduler.create_if_not_exists(
       '0' => true
     }
   },
-  updated_by_id: 1,
-  created_by_id: 1,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )

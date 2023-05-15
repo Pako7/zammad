@@ -81,8 +81,8 @@ class CreateTicketReopenTime < ActiveRecord::Migration[5.0]
       to_migrate:    false,
       to_delete:     false,
       position:      410,
-      created_by_id: 1,
-      updated_by_id: 1,
+      created_by_id: User.first.id,
+      updated_by_id: User.first.id,
     )
 
     CoreWorkflow.create_if_not_exists(
@@ -94,8 +94,8 @@ class CreateTicketReopenTime < ActiveRecord::Migration[5.0]
       preferences:        { 'screen'=>%w[create edit] },
       changeable:         false,
       active:             true,
-      created_by_id:      1,
-      updated_by_id:      1,
+      created_by_id:      User.first.id,
+      updated_by_id:      User.first.id,
     )
   end
 end

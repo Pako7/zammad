@@ -27,8 +27,8 @@ class AddTaskbarCleanupJob < ActiveRecord::Migration[6.1]
           '0' => true
         }
       },
-      updated_by_id: 1,
-      created_by_id: 1,
+      updated_by_id: User.first.id,
+      created_by_id: User.first.id,
       last_run:      Time.zone.now,
     )
   end

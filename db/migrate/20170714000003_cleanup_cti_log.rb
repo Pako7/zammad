@@ -12,8 +12,8 @@ class CleanupCtiLog < ActiveRecord::Migration[4.2]
       period:        1.month,
       prio:          2,
       active:        true,
-      updated_by_id: 1,
-      created_by_id: 1,
+      updated_by_id: User.first.id,
+      created_by_id: User.first.id,
     )
   end
 

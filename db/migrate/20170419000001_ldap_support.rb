@@ -87,8 +87,8 @@ class LdapSupport < ActiveRecord::Migration[4.2]
       period:        1.hour,
       prio:          1,
       active:        true,
-      updated_by_id: 1,
-      created_by_id: 1
+      updated_by_id: User.first.id,
+      created_by_id: User.first.id
     )
 
     Setting.create_if_not_exists(

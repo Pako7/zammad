@@ -16,5 +16,5 @@ class ApplicationController < ActionController::Base
   include ApplicationController::Authorizes
   include ApplicationController::Klass
 
-  set_current_tenant_by_subdomain(:account, :subdomain)
+  set_current_tenant_by_subdomain(:tenant, :subdomain)
 end

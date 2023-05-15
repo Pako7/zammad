@@ -8,8 +8,8 @@ class AddTicketArticleTypeFacebookDirectMessage < ActiveRecord::Migration[6.0]
     Ticket::Article::Type.create_if_not_exists(
       name:          'facebook direct-message',
       communication: true,
-      updated_by_id: 1,
-      created_by_id: 1,
+      updated_by_id: User.first.id,
+      created_by_id: User.first.id,
     )
   end
 end
