@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Setting < ApplicationModel
+  include AsMultitenant
   store         :options
   store         :state_current
   store         :state_initial

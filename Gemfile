@@ -63,6 +63,9 @@ gem 'dalli', require: false
 # Vite is required by the web server
 gem 'vite_rails'
 
+# Row-level multitenancy 
+gem 'acts_as_tenant'
+
 # Only load gems for asset compilation if they are needed to avoid
 #   having unneeded runtime dependencies like NodeJS.
 group :assets do

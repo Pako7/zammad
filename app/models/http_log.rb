@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class HttpLog < ApplicationModel
+  include AsMultitenant
   store :request
   store :response
 

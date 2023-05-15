@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Sla < ApplicationModel
+  include AsMultitenant
   include ChecksClientNotification
   include ChecksConditionValidation
   include HasEscalationCalculationImpact

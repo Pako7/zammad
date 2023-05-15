@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Channel < ApplicationModel
+  include AsMultitenant
   include Channel::Assets
 
   belongs_to :group, optional: true

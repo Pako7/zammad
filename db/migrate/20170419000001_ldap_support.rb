@@ -8,6 +8,7 @@ class LdapSupport < ActiveRecord::Migration[4.2]
 
     if !ActiveRecord::Base.connection.table_exists? 'import_jobs'
       create_table :import_jobs do |t|
+        t.belongs_to :tenant, index: true, null: false
         t.string :name, limit: 250, null: false
 
         t.boolean :dry_run, default: false

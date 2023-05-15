@@ -20,6 +20,7 @@ class Issue3372WebhooksAdminView < ActiveRecord::Migration[5.2]
 
   def create_webhooks_table
     create_table :webhooks do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                       :string, limit: 250,  null: false
       t.column :endpoint,                   :string, limit: 300,  null: false
       t.column :signature_token,            :string, limit: 200,  null: true

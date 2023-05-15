@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class History::Object < ApplicationModel
+  include AsMultitenant
   include ChecksHtmlSanitized
 
   validates :note, length: { maximum: 250 }

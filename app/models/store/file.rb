@@ -1,7 +1,9 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Store < ApplicationModel
+  include AsMultitenant
   class File < ApplicationModel
+    include AsMultitenant
     include ApplicationLib
     after_destroy :destroy_provider
 

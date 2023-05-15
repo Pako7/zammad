@@ -4,6 +4,7 @@ class GroupDependentMacros < ActiveRecord::Migration[4.2]
   def up
 
     create_table :groups_macros, id: false do |t| # rubocop:disable Rails/CreateTableWithTimestamps
+      t.belongs_to :tenant, index: true, null: false
       t.references :macro, null: false
       t.references :group, null: false
     end

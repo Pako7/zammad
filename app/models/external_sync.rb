@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class ExternalSync < ApplicationModel
+  include AsMultitenant
   store :last_payload
 
   class << self

@@ -3,6 +3,7 @@
 class CreateTicket < ActiveRecord::Migration[4.2]
   def up
     create_table :ticket_state_types do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 250, null: false
       t.column :note,                 :string, limit: 250, null: true
       t.column :updated_by_id,        :integer,            null: false
@@ -14,6 +15,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_state_types, :users, column: :updated_by_id
 
     create_table :ticket_states do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :state_type, null: false
       t.column :name,                 :string, limit: 250,  null: false
       t.column :next_state_id,        :integer,             null: true
@@ -34,6 +36,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_states, :users, column: :updated_by_id
 
     create_table :ticket_priorities do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 250, null: false
       t.column :default_create,       :boolean,            null: false, default: false
       t.column :ui_icon,              :string, limit: 100, null: true
@@ -50,6 +53,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_priorities, :users, column: :updated_by_id
 
     create_table :tickets do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :group,                                                null: false
       t.references :priority,                                             null: false
       t.references :state,                                                null: false
@@ -136,6 +140,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :tickets, :users, column: :updated_by_id
 
     create_table :ticket_flags do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :ticket,                          null: false
       t.column :key,            :string, limit: 50,  null: false
       t.column :value,          :string, limit: 50,  null: true
@@ -150,6 +155,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_flags, :users, column: :created_by_id
 
     create_table :ticket_article_types do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 250, null: false
       t.column :note,                 :string, limit: 250, null: true
       t.column :communication,        :boolean,            null: false
@@ -163,6 +169,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_article_types, :users, column: :updated_by_id
 
     create_table :ticket_article_senders do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 250, null: false
       t.column :note,                 :string, limit: 250, null: true
       t.column :updated_by_id,        :integer,            null: false
@@ -174,6 +181,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_article_senders, :users, column: :updated_by_id
 
     create_table :ticket_articles do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :ticket,                                    null: false
       t.references :type,                                      null: false
       t.references :sender,                                    null: false
@@ -211,6 +219,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_articles, :users, column: :origin_by_id
 
     create_table :ticket_article_flags do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :ticket_article,                      null: false
       t.column :key,                 :string, limit: 50, null: false
       t.column :value,               :string, limit: 50, null: true
@@ -225,6 +234,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_article_flags, :users, column: :created_by_id
 
     create_table :ticket_time_accountings do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :ticket,                                       null: false
       t.references :ticket_article,                               null: true
       t.column :time_unit,      :decimal, precision: 6, scale: 2, null: false
@@ -240,12 +250,14 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :ticket_time_accountings, :users, column: :created_by_id
 
     create_table :ticket_counters do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :content,              :string, limit: 100, null: false
       t.column :generator,            :string, limit: 100, null: false
     end
     add_index :ticket_counters, [:generator], unique: true
 
     create_table :overviews do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string,  limit: 250,    null: false
       t.column :link,                 :string,  limit: 250,    null: false
       t.column :prio,                 :integer,                null: false
@@ -266,6 +278,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews, :users, column: :updated_by_id
 
     create_table :overviews_roles, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :role
     end
@@ -275,6 +288,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews_roles, :roles
 
     create_table :overviews_users, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :user
     end
@@ -284,6 +298,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews_users, :users
 
     create_table :overviews_groups, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :group
     end
@@ -293,6 +308,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews_groups, :groups
 
     create_table :triggers do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 250, null: false
       t.column :condition,            :text, limit: 500.kilobytes + 1, null: false
       t.column :perform,              :text, limit: 500.kilobytes + 1, null: false
@@ -308,6 +324,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :triggers, :users, column: :updated_by_id
 
     create_table :jobs do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string,  limit: 250,    null: false
       t.column :timeplan,             :string,  limit: 2500,   null: false
       t.column :condition,            :text, limit: 500.kilobytes + 1, null: false
@@ -330,6 +347,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :jobs, :users, column: :updated_by_id
 
     create_table :link_types do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,         :string, limit: 250,   null: false
       t.column :note,         :string, limit: 250,   null: true
       t.column :active,       :boolean,              null: false, default: true
@@ -338,6 +356,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_index :link_types, [:name], unique: true
 
     create_table :link_objects do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,         :string, limit: 250,   null: false
       t.column :note,         :string, limit: 250,   null: true
       t.column :active,       :boolean,              null: false, default: true
@@ -346,6 +365,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_index :link_objects, [:name], unique: true
 
     create_table :links do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :link_type,                            null: false
       t.column :link_object_source_id,        :integer,   null: false
       t.column :link_object_source_value,     :integer,   null: false
@@ -357,6 +377,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :links, :link_types
 
     create_table :postmaster_filters do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,           :string, limit: 250,    null: false
       t.column :channel,        :string, limit: 250,    null: false
       t.column :match,          :text, limit: 500.kilobytes + 1, null: false
@@ -372,6 +393,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :postmaster_filters, :users, column: :updated_by_id
 
     create_table :text_modules do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string,  limit: 250,  null: false
       t.column :keywords,             :string,  limit: 500,  null: true
       t.column :content,              :text,    limit: 10.megabytes + 1, null: false
@@ -386,6 +408,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :text_modules, :users, column: :updated_by_id
 
     create_table :text_modules_groups, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :text_module
       t.references :group
     end
@@ -395,6 +418,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :text_modules_groups, :groups
 
     create_table :templates do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string,  limit: 250,  null: false
       t.column :options,              :text,    limit: 10.megabytes + 1, null: false
       t.column :active,               :boolean, null: false, default: true
@@ -407,6 +431,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :templates, :users, column: :updated_by_id
 
     create_table :templates_groups, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :template
       t.references :group
     end
@@ -416,6 +441,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :templates_groups, :groups
 
     create_table :channels do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :group,                             null: true
       t.column :area,           :string, limit: 100,   null: false
       t.column :options,        :text,   limit: 500.kilobytes + 1,  null: true
@@ -435,6 +461,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :channels, :users, column: :updated_by_id
 
     create_table :slas do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :calendar,                                   null: false
       t.column :name,                 :string, limit: 150,      null: true
       t.column :first_response_time,  :integer,                 null: true
@@ -451,6 +478,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :slas, :users, column: :updated_by_id
 
     create_table :macros do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.string  :name,                   limit: 250, null: true
       t.text    :perform,                limit: 500.kilobytes + 1, null: false
       t.boolean :active,                                null: false, default: true
@@ -465,6 +493,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :macros, :users, column: :updated_by_id
 
     create_table :chats do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.string  :name, limit: 250, null: true
       t.integer :max_queue, null: false, default: 5
       t.string  :note, limit: 250, null: true
@@ -483,6 +512,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :chats, :users, column: :updated_by_id
 
     create_table :chat_sessions do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :chat,                             null: false
       t.string  :session_id,                          null: false
       t.string  :name,                   limit: 250,  null: true
@@ -503,6 +533,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :chat_sessions, :users, column: :updated_by_id
 
     create_table :chat_messages do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :chat_session, null: false
       t.text    :content, limit: 20.megabytes + 1, null: false
       t.integer :created_by_id, null: true
@@ -513,6 +544,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :chat_messages, :users, column: :created_by_id
 
     create_table :chat_agents do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.boolean :active,                              null: false, default: true
       t.integer :concurrent,                          null: false, default: 5
       t.integer :updated_by_id,                       null: false
@@ -526,6 +558,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :chat_agents, :users, column: :updated_by_id
 
     create_table :report_profiles do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,           :string, limit: 150, null: true
       t.column :condition,      :text, limit: 500.kilobytes + 1, null: true
       t.column :active,         :boolean,               null: false, default: true
@@ -538,6 +571,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :report_profiles, :users, column: :updated_by_id
 
     create_table :webhooks do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                       :string, limit: 250,  null: false
       t.column :endpoint,                   :string, limit: 300,  null: false
       t.column :signature_token,            :string, limit: 200,  null: true
@@ -552,6 +586,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     end
 
     create_table :ticket_shared_draft_zooms do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :ticket, null: false, foreign_key: { to_table: :tickets }
       t.text       :new_article
       t.text       :ticket_attributes
@@ -561,6 +596,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     end
 
     create_table :ticket_shared_draft_starts do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :group, null: false, foreign_key: { to_table: :groups }
       t.string     :name
       t.text       :content

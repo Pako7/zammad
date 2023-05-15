@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Chat::Session < ApplicationModel
+  include AsMultitenant
   include HasSearchIndexBackend
   include HasTags
 

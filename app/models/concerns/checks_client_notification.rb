@@ -118,6 +118,7 @@ module ChecksClientNotification
     #
     # @example
     #   class Model < ApplicationModel
+    #     include AsMultitenant
     #     include ChecksClientNotification
     #     client_notification_events_ignored :create, :update, :touch
     #   end
@@ -130,6 +131,7 @@ module ChecksClientNotification
     #
     # @example
     #   class Model < ApplicationModel
+    #     include AsMultitenant
     #     include ChecksClientNotification
     #     client_notification_send_to :user_id
     #   end

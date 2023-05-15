@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Store < ApplicationModel
+  include AsMultitenant
   PREFERENCES_SIZE_MAX = 2400
 
   belongs_to :store_object, class_name: 'Store::Object', optional: true

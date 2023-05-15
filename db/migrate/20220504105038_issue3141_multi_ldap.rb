@@ -12,6 +12,7 @@ class Issue3141MultiLdap < ActiveRecord::Migration[6.1]
 
   def add_table
     create_table :ldap_sources do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.string :name,                     limit: 100, null: false
       t.text   :preferences,              limit: 5.megabytes + 1, null: true
       t.boolean :active,                  null: false, default: true

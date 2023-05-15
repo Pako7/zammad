@@ -1,0 +1,52 @@
+<%= form_with(model: tenant) do |form| %>
+  <% if tenant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tenant.errors.count, "error") %> prohibited this tenant from being saved:</h2>
+
+      <ul>
+        <% tenant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :responsible %>
+    <%= form.text_field :responsible %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subdomain %>
+    <%= form.text_field :subdomain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comercial_name %>
+    <%= form.text_field :comercial_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

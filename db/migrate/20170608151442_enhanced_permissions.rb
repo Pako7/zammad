@@ -14,6 +14,7 @@ class EnhancedPermissions < ActiveRecord::Migration[4.2]
     UserGroup.reset_column_information
 
     create_table :roles_groups, id: false do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.references :role,                null: false
       t.references :group,               null: false
       t.string :access, limit: 50, null: false, default: 'full'

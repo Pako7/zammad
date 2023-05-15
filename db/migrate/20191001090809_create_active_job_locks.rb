@@ -6,6 +6,7 @@ class CreateActiveJobLocks < ActiveRecord::Migration[5.2]
     return if !Setting.exists?(name: 'system_init_done')
 
     create_table :active_job_locks do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.string :lock_key
       t.string :active_job_id
 

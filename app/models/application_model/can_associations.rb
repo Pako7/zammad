@@ -308,6 +308,7 @@ returns
 serve method to ignore model attribute associations
 
 class Model < ApplicationModel
+  include AsMultitenant
   include AssociationConcern
   association_attributes_ignored :users
 end

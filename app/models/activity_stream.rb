@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class ActivityStream < ApplicationModel
+  include AsMultitenant
   include ActivityStream::Assets
 
   self.table_name = 'activity_streams'

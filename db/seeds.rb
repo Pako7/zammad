@@ -11,6 +11,11 @@
 # clear old caches to start from scratch
 Rails.cache.clear
 
+tenant = Tenant.create_if_not_exists(responsible: 'h1', subdomain: 'h1')
+ActsAsTenant.current_tenant = tenant if ActsAsTenant.current_tenant.nil?
+
+Tenant.create_if_not_exists(responsible: 'h2', subdomain: 'h2')
+
 # this is the __ordered__ list of seed files
 # extend only if needed - try to add your changes
 # to the matching one of the existing files

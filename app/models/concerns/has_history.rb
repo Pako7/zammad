@@ -244,6 +244,7 @@ returns
 serve method to ignore model attributes in historization
 
 class Model < ApplicationModel
+  include AsMultitenant
   include HasHistory
   history_attributes_ignored :create_article_type_id, :preferences
 end
@@ -259,6 +260,7 @@ end
 serve method to ignore model attributes in historization
 
 class Model < ApplicationModel
+  include AsMultitenant
   include HasHistory
   history_relation_object 'Some::Relation::Object'
 end

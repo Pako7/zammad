@@ -13,6 +13,7 @@ class DataPrivacyInit < ActiveRecord::Migration[4.2]
 
   def up_table
     create_table :data_privacy_tasks do |t|
+      t.belongs_to :tenant, index: true, null: false
       t.column :name,                 :string, limit: 150,                        null: true
       t.column :state,                :string, limit: 150, default: 'in process', null: true
       t.references :deletable,        polymorphic: true
