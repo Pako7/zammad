@@ -11,15 +11,28 @@
 # clear old caches to start from scratch
 Rails.cache.clear
 
-tenant = Tenant.create_if_not_exists(responsible: 'h1', subdomain: 'h1')
-ActsAsTenant.current_tenant = tenant if ActsAsTenant.current_tenant.nil?
-
-Tenant.create_if_not_exists(responsible: 'h2', subdomain: 'h2')
+Tenant.set_current_tenant('h1')
 
 # this is the __ordered__ list of seed files
 # extend only if needed - try to add your changes
 # to the matching one of the existing files
-seeds = %w[settings user_nr_1 signatures roles permissions groups links ticket_state_types ticket_states ticket_priorities ticket_article_types ticket_article_senders macros community_user_resources overviews channels report_profiles chats object_manager_attributes schedulers triggers core_workflow]
+seeds = %w[
+  settings user_nr_1 signatures roles permissions groups 
+  links ticket_state_types ticket_states ticket_priorities ticket_article_types 
+  ticket_article_senders macros community_user_resources overviews channels report_profiles 
+  chats object_manager_attributes schedulers triggers core_workflow
+]
+
+=begin
+
+%w[
+  settings user_nr_1 signatures roles permissions groups 
+  links ticket_state_types ticket_states ticket_priorities ticket_article_types 
+  ticket_article_senders macros community_user_resources overviews channels report_profiles 
+  chats object_manager_attributes schedulers triggers core_workflow
+]
+
+=end
 
 # loop over and load all seedfiles
 # files will get executed automatically
@@ -33,9 +46,9 @@ DbHelper.import_post
 
 # install locales and translations
 Locale.create_if_not_exists(
-  locale: 'en-us',
-  alias:  'en',
-  name:   __('English (United States)'),
+  locale: 'es-mx',
+  alias:  '',
+  name:   __('Español (México)'),
 )
 Locale.sync
 Translation.sync

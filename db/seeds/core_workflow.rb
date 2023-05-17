@@ -77,8 +77,8 @@ CoreWorkflow.create_if_not_exists(
     },
   },
   changeable:      false,
-  created_by_id:   1,
-  updated_by_id:   1,
+  created_by_id:   User.first.id,
+  updated_by_id:   User.first.id
 )
 CoreWorkflow.create_if_not_exists(
   name:               'base - show reopen_time_in_days',
@@ -89,6 +89,6 @@ CoreWorkflow.create_if_not_exists(
   preferences:        { 'screen'=>%w[create edit] },
   changeable:         false,
   active:             true,
-  created_by_id:      1,
-  updated_by_id:      1,
+  created_by_id:   User.first.id,
+  updated_by_id:   User.first.id
 )

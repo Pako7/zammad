@@ -40,8 +40,8 @@ Trigger.create_or_update(
     },
   },
   active:        true,
-  created_by_id: 1,
-  updated_by_id: 1,
+  created_by_id: User.first.id,
+  updated_by_id: User.first.id,
 )
 Trigger.create_or_update(
   name:          'auto reply (on follow-up of tickets)',
@@ -79,8 +79,8 @@ Trigger.create_or_update(
     },
   },
   active:        false,
-  created_by_id: 1,
-  updated_by_id: 1,
+  created_by_id: User.first.id,
+  updated_by_id: User.first.id,
 )
 
 Trigger.create_or_update(
@@ -107,6 +107,6 @@ Trigger.create_or_update(
     },
   },
   active:        false,
-  created_by_id: 1,
-  updated_by_id: 1,
+  created_by_id: User.first.id,
+  updated_by_id: User.first.id,
 )

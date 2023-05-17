@@ -10,7 +10,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,            null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ticket_state_types, [:name], unique: true
+    add_index :ticket_state_types, %i[name tenant_id], unique: true
     add_foreign_key :ticket_state_types, :users, column: :created_by_id
     add_foreign_key :ticket_state_types, :users, column: :updated_by_id
 
@@ -28,7 +28,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,             null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ticket_states, [:name], unique: true
+    add_index :ticket_states, %i[name tenant_id], unique: true
     add_index :ticket_states, [:default_create]
     add_index :ticket_states, [:default_follow_up]
     add_foreign_key :ticket_states, :ticket_state_types, column: :state_type_id
@@ -47,7 +47,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,            null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ticket_priorities, [:name], unique: true
+    add_index :ticket_priorities, %i[name tenant_id], unique: true
     add_index :ticket_priorities, [:default_create]
     add_foreign_key :ticket_priorities, :users, column: :created_by_id
     add_foreign_key :ticket_priorities, :users, column: :updated_by_id
@@ -97,7 +97,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_index :tickets, [:owner_id]
     add_index :tickets, [:customer_id]
     add_index :tickets, %i[customer_id state_id created_at]
-    add_index :tickets, [:number], unique: true
+    add_index :tickets, %i[number tenant_id], unique: true
     add_index :tickets, [:title]
     add_index :tickets, [:created_at]
     add_index :tickets, [:updated_at]
@@ -164,7 +164,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,            null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ticket_article_types, [:name], unique: true
+    add_index :ticket_article_types, %i[name tenant_id], unique: true
     add_foreign_key :ticket_article_types, :users, column: :created_by_id
     add_foreign_key :ticket_article_types, :users, column: :updated_by_id
 
@@ -176,7 +176,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,            null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ticket_article_senders, [:name], unique: true
+    add_index :ticket_article_senders, %i[name tenant_id], unique: true
     add_foreign_key :ticket_article_senders, :users, column: :created_by_id
     add_foreign_key :ticket_article_senders, :users, column: :updated_by_id
 
@@ -254,7 +254,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :content,              :string, limit: 100, null: false
       t.column :generator,            :string, limit: 100, null: false
     end
-    add_index :ticket_counters, [:generator], unique: true
+    add_index :ticket_counters, %i[generator tenant_id], unique: true
 
     create_table :overviews do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -319,7 +319,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,               null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :triggers, [:name], unique: true
+    add_index :triggers, %i[name tenant_id], unique: true
     add_foreign_key :triggers, :users, column: :created_by_id
     add_foreign_key :triggers, :users, column: :updated_by_id
 
@@ -342,7 +342,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,                null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :jobs, [:name], unique: true
+    add_index :jobs, %i[name tenant_id], unique: true
     add_foreign_key :jobs, :users, column: :created_by_id
     add_foreign_key :jobs, :users, column: :updated_by_id
 
@@ -353,7 +353,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :active,       :boolean,              null: false, default: true
       t.timestamps limit: 3, null: false
     end
-    add_index :link_types, [:name], unique: true
+    add_index :link_types, %i[name tenant_id], unique: true
 
     create_table :link_objects do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -362,7 +362,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :active,       :boolean,              null: false, default: true
       t.timestamps limit: 3, null: false
     end
-    add_index :link_objects, [:name], unique: true
+    add_index :link_objects, %i[name tenant_id], unique: true
 
     create_table :links do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -373,7 +373,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :link_object_target_value,     :integer,   null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :links, %i[link_object_source_id link_object_source_value link_object_target_id link_object_target_value link_type_id], unique: true, name: 'links_uniq_total'
+    add_index :links, %i[link_object_source_id link_object_source_value link_object_target_id link_object_target_value link_type_id tenant_id], unique: true, name: 'links_uniq_total'
     add_foreign_key :links, :link_types
 
     create_table :postmaster_filters do |t|
@@ -473,7 +473,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,        :integer,                 null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :slas, [:name], unique: true
+    add_index :slas, %i[name tenant_id], unique: true
     add_foreign_key :slas, :users, column: :created_by_id
     add_foreign_key :slas, :users, column: :updated_by_id
 
@@ -488,7 +488,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.integer :created_by_id,                         null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :macros, [:name], unique: true
+    add_index :macros, %i[name tenant_id], unique: true
     add_foreign_key :macros, :users, column: :created_by_id
     add_foreign_key :macros, :users, column: :updated_by_id
 
@@ -507,7 +507,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.integer :created_by_id,                       null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :chats, [:name], unique: true
+    add_index :chats, %i[name tenant_id], unique: true
     add_foreign_key :chats, :users, column: :created_by_id
     add_foreign_key :chats, :users, column: :updated_by_id
 
@@ -552,8 +552,8 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.timestamps limit: 3, null: false
     end
     add_index :chat_agents, [:active]
-    add_index :chat_agents, [:updated_by_id], unique: true
-    add_index :chat_agents, [:created_by_id], unique: true
+    add_index :chat_agents, [:updated_by_id :tenant_id], unique: true
+    add_index :chat_agents, [:created_by_id :tenant_id], unique: true
     add_foreign_key :chat_agents, :users, column: :created_by_id
     add_foreign_key :chat_agents, :users, column: :updated_by_id
 
@@ -566,7 +566,7 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.column :created_by_id,  :integer,               null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :report_profiles, [:name], unique: true
+    add_index :report_profiles, %i[name tenant_id], unique: true
     add_foreign_key :report_profiles, :users, column: :created_by_id
     add_foreign_key :report_profiles, :users, column: :updated_by_id
 

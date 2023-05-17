@@ -12,7 +12,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[4.2]
       t.timestamps             null: false # rubocop:disable Zammad/ExistsDateTimePrecision
     end
 
-    add_index :oauth_applications, :uid, unique: true
+    add_index :oauth_applications, %i[uid tenant_id], unique: true
 
     create_table :oauth_access_grants do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -26,7 +26,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[4.2]
       t.string   :scopes
     end
 
-    add_index :oauth_access_grants, :token, unique: true
+    add_index :oauth_access_grants, %i[token tenant_id], unique: true
     add_foreign_key(
       :oauth_access_grants,
       :oauth_applications,
@@ -61,9 +61,9 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[4.2]
       t.string   :previous_refresh_token, null: false, default: ''
     end
 
-    add_index :oauth_access_tokens, :token, unique: true
-    add_index :oauth_access_tokens, :resource_owner_id
-    add_index :oauth_access_tokens, :refresh_token, unique: true
+    add_index :oauth_access_tokens, %i[token tenant_id], unique: true
+    add_index :oauth_access_tokens, %i[resource_owner_id tenant_id]:
+    add_index :oauth_access_tokens, %i[refresh_token tenant_id], unique: true
     add_foreign_key(
       :oauth_access_tokens,
       :oauth_applications,

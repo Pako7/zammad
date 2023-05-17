@@ -13,7 +13,7 @@ class CreateKnowledgeBasePermissions < ActiveRecord::Migration[5.0]
       t.string 'access', limit: 50, default: 'full', null: false
       t.index 'access'
 
-      t.index %i[role_id permissionable_id permissionable_type], unique: true, name: 'knowledge_base_permissions_uniqueness'
+      t.index %i[role_id permissionable_id permissionable_type tenant_id], unique: true, name: 'knowledge_base_permissions_uniqueness'
 
       t.timestamps limit: 3
     end

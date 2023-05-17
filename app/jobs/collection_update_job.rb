@@ -9,11 +9,13 @@ class CollectionUpdateJob < ApplicationJob
   end
 
   def perform(model)
+    puts "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww #{model}"
     model = model.safe_constantize
     return if model.blank?
 
     assets = {}
     all = []
+    
     model.reorder(id: :asc).find_each do |record|
       assets = record.assets(assets)
       all.push record.attributes_with_association_ids

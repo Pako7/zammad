@@ -6,9 +6,9 @@ Signature.create_if_not_exists(
   #{user.firstname} #{user.lastname}
 
 --
- Super Support - Waterford Business Park
- 5201 Blue Lagoon Drive - 8th Floor & 9th Floor - Miami, 33126 USA
- Email: hot@example.com - Web: http://www.example.com/
+Support - Support
+Mexico
+Email: nicole.braun@zammad.org - Web: http://www.example.com/
 --'.text2html,
   updated_by_id: User.first.id,
   created_by_id: User.first.id

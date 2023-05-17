@@ -21,7 +21,7 @@ class Issue3141MultiLdap < ActiveRecord::Migration[6.1]
       t.integer :created_by_id,           null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :ldap_sources, [:name], unique: true
+    add_index :ldap_sources, %i[name tenant], unique: true
     add_foreign_key :ldap_sources, :users, column: :created_by_id
     add_foreign_key :ldap_sources, :users, column: :updated_by_id
   end

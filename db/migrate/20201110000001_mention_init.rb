@@ -14,7 +14,7 @@ class MentionInit < ActiveRecord::Migration[5.2]
       t.column :created_by_id,        :integer, null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :mentions, %i[mentionable_id mentionable_type user_id], unique: true, name: 'index_mentions_mentionable_user'
+    add_index :mentions, %i[mentionable_id mentionable_type user_id tenant_id], unique: true, name: 'index_mentions_mentionable_user'
     add_foreign_key :mentions, :users, column: :created_by_id
     add_foreign_key :mentions, :users, column: :updated_by_id
     add_foreign_key :mentions, :users, column: :user_id

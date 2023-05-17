@@ -69,7 +69,7 @@ class SMIMESupport < ActiveRecord::Migration[5.2]
       t.string :private_key_secret, limit: 500, null: true
       t.timestamps limit: 3, null: false
     end
-    add_index :smime_certificates, [:fingerprint], unique: true
+    add_index :smime_certificates, %i[fingerprint tenant_id], unique: true
     add_index :smime_certificates, [:modulus]
     add_index :smime_certificates, [:subject]
   end

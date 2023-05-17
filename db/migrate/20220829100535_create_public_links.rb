@@ -6,7 +6,7 @@ class CreatePublicLinks < ActiveRecord::Migration[6.1]
     return if !Setting.exists?(name: 'system_init_done')
 
     add_table
-    add_index :public_links, [:link], unique: true
+    add_index :public_links, %i[link tenant_id], unique: true
     add_foreign_key :public_links, :users, column: :created_by_id
     add_foreign_key :public_links, :users, column: :updated_by_id
 

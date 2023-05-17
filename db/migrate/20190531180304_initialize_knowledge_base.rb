@@ -32,7 +32,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
 
       t.timestamps limit: 3, null: false
     end
-    add_index :knowledge_base_locales, %i[system_locale_id knowledge_base_id], name: 'index_kb_locale_on_kb_system_locale_kb', unique: true
+    add_index :knowledge_base_locales, %i[system_locale_id knowledge_base_id tenant_id], name: 'index_kb_locale_on_kb_system_locale_kb', unique: true
 
     create_table :knowledge_base_translations do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -44,7 +44,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
 
       t.timestamps limit: 3, null: false
     end
-    add_index :knowledge_base_translations, %i[kb_locale_id knowledge_base_id], name: 'index_kb_t_on_kb_locale_kb', unique: true
+    add_index :knowledge_base_translations, %i[kb_locale_id knowledge_base_id tenant_id], name: 'index_kb_t_on_kb_locale_kb', unique: true
 
     create_table :knowledge_base_categories do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -66,7 +66,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
 
       t.timestamps limit: 3, null: false
     end
-    add_index :knowledge_base_category_translations, %i[kb_locale_id category_id], name: 'index_kb_c_t_on_kb_locale_category', unique: true
+    add_index :knowledge_base_category_translations, %i[kb_locale_id category_id tenant_id], name: 'index_kb_c_t_on_kb_locale_category', unique: true
 
     create_table :knowledge_base_answers do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -104,7 +104,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
 
       t.timestamps limit: 3, null: false
     end
-    add_index :knowledge_base_answer_translations, %i[kb_locale_id answer_id], name: 'index_kb_a_t_on_kb_locale_answer', unique: true
+    add_index :knowledge_base_answer_translations, %i[kb_locale_id answer_id tenant_id], name: 'index_kb_a_t_on_kb_locale_answer', unique: true
 
     create_table :knowledge_base_menu_items do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -126,7 +126,7 @@ class InitializeKnowledgeBase < ActiveRecord::Migration[5.0]
       t.string 'access', limit: 50, default: 'full', null: false
       t.index 'access'
 
-      t.index %i[role_id permissionable_id permissionable_type], unique: true, name: 'knowledge_base_permissions_uniqueness'
+      t.index %i[role_id permissionable_id permissionable_type tenant_id], unique: true, name: 'knowledge_base_permissions_uniqueness'
 
       t.timestamps limit: 3, null: false
     end

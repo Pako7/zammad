@@ -13,7 +13,7 @@ Channel.create_if_not_exists(
       },
     },
   },
-  group_id:    1,
+  group_id:    Group.first.id,
   preferences: { online_service_disable: true },
   active:      false,
 )

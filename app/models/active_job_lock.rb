@@ -1,6 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class ActiveJobLock < ActiveRecord::Base
+  include AsMultitenant
 
   def of?(active_job)
     active_job.job_id == active_job_id

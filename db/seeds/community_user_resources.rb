@@ -1,11 +1,9 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 org_community = Organization.create_if_not_exists(
-  id:   1,
-  name: __('Zammad Foundation'),
+  name: __('Zammad Foundation')
 )
 user_community = User.create_or_update(
-  id:              2,
   login:           'nicole.braun@zammad.org',
   firstname:       'Nicole',
   lastname:        'Braun',
@@ -13,7 +11,7 @@ user_community = User.create_or_update(
   password:        '',
   active:          true,
   roles:           [ Role.find_by(name: 'Customer') ],
-  organization_id: org_community.id,
+  organization_id: org_community.id
 )
 
 UserInfo.current_user_id = user_community.id

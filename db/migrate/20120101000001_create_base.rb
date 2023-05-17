@@ -164,7 +164,6 @@ class CreateBase < ActiveRecord::Migration[4.2]
     add_index :permissions, %i[name tenant_id], unique: true
 
     create_table :permissions_roles, id: false do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.belongs_to :role, index: true
       t.belongs_to :permission, index: true
     end
@@ -188,7 +187,6 @@ class CreateBase < ActiveRecord::Migration[4.2]
     add_foreign_key :organizations, :users, column: :updated_by_id
 
     create_table :roles_users, id: false do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.references :user
       t.references :role
     end
@@ -420,7 +418,7 @@ class CreateBase < ActiveRecord::Migration[4.2]
       t.string :name,                   limit: 250, null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :history_types, [:name, :tenant_id], unique: true
+    add_index :history_types, %i[name tenant_id], unique: true
 
     create_table :history_objects do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -428,14 +426,14 @@ class CreateBase < ActiveRecord::Migration[4.2]
       t.string :note,                   limit: 250, null: true
       t.timestamps limit: 3, null: false
     end
-    add_index :history_objects, [:name, :tenant_id], unique: true
+    add_index :history_objects, %i[name tenant_id], unique: true
 
     create_table :history_attributes do |t|
       t.belongs_to :tenant, index: true, null: false
       t.string :name,                   limit: 250, null: false
       t.timestamps limit: 3, null: false
     end
-    add_index :history_attributes, [:name, :tenant_id], unique: true
+    add_index :history_attributes, %i[name tenant_id], unique: true
 
     create_table :histories do |t|
       t.belongs_to :tenant, index: true, null: false
@@ -483,7 +481,7 @@ class CreateBase < ActiveRecord::Migration[4.2]
       t.text :preferences,              limit: 200.kilobytes + 1, null: true
       t.timestamps limit: 3, null: false
     end
-    add_index :settings, [:name, :tenant_id], unique: true
+    add_index :settings, %i[name tenant_id], unique: true
     add_index :settings, [:area]
     add_index :settings, [:frontend]
 
@@ -493,7 +491,7 @@ class CreateBase < ActiveRecord::Migration[4.2]
       t.string :note,               limit: 250, null: true
       t.timestamps limit: 3, null: false
     end
-    add_index :store_objects, [:name, :tenant_id], unique: true
+    add_index :store_objects, %i[name tenant_id], unique: true
 
     create_table :store_files do |t|
       t.belongs_to :tenant, index: true, null: false
