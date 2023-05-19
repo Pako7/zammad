@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> settings"
+
 Setting.create_if_not_exists(
   title:       __('Application secret'),
   name:        'application_secret',
@@ -33,7 +35,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Maintenance Mode'),
   name:        'maintenance_mode',
   area:        'Core::WebApp',
@@ -45,7 +47,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Maintenance Login'),
   name:        'maintenance_login',
   area:        'Core::WebApp',
@@ -57,7 +59,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Maintenance Login'),
   name:        'maintenance_login_message',
   area:        'Core::WebApp',
@@ -447,7 +449,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Geo Calendar Service'),
   name:        'geo_calendar_backend',
   area:        'System::Services',
@@ -571,7 +573,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Core Workflow Ajax Mode'),
   name:        'core_workflow_ajax_mode',
   area:        'System::UI',
@@ -1008,7 +1010,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Maximum number of open tabs.'),
   name:        'ui_task_mananger_max_task_count',
   area:        'UI::TaskManager::Task::MaxCount',
@@ -1021,7 +1023,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Password Login'),
   name:        'user_show_password_login',
   area:        'Security::Base',
@@ -1550,7 +1552,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Authentication via %s'),
   name:        'auth_github',
   area:        'Security::ThirdPartyAuthentication',

@@ -1,4 +1,5 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
+puts "seeds -> report_profiles"
 
 Report::Profile.create_if_not_exists(
   name:          '-all-',

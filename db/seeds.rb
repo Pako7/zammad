@@ -11,7 +11,8 @@
 # clear old caches to start from scratch
 Rails.cache.clear
 
-Tenant.set_current_tenant('h1')
+Tenant.set_current_tenant('h2')
+# bundle exec rake db:drop ; bundle exec rake db:create ; bundle exec rake db:migrate ; bundle exec rake db:seed ;
 
 # this is the __ordered__ list of seed files
 # extend only if needed - try to add your changes

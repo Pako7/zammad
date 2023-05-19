@@ -1,8 +1,13 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-org_community = Organization.create_if_not_exists(
+puts "seeds -> community_user_resources"
+
+org_community = Organization.find_or_create_by!(
   name: __('Zammad Foundation')
 )
+
+# pako, commented first ticket
+=begin
 user_community = User.create_or_update(
   login:           'nicole.braun@zammad.org',
   firstname:       'Nicole',
@@ -22,6 +27,7 @@ if Ticket.count.zero?
     customer_id: User.find_by(login: 'nicole.braun@zammad.org').id,
     title:       __('Welcome to Zammad!'),
   )
+  
   Ticket::Article.create!(
     ticket_id: ticket.id,
     type_id:   Ticket::Article::Type.find_by(name: 'phone').id,
@@ -42,5 +48,5 @@ if Ticket.count.zero?
     internal:  false,
   )
 end
-
-UserInfo.current_user_id = 1
+UserInfo.current_user_id = User.first.id
+=end

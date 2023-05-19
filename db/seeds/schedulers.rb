@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> schedulers"
+
 Scheduler.create_if_not_exists(
   name:   __('Process pending tickets.'),
   method: 'Ticket.process_pending',
@@ -210,7 +212,7 @@ Scheduler.create_if_not_exists(
   updated_by_id: User.first.id,
   created_by_id: User.first.id
 )
-Scheduler.create_if_not_exists(
+Scheduler.find_or_create_by!(
   name:          __('Handle data privacy tasks.'),
   method:        'DataPrivacyTaskJob.perform_now',
   period:        10.minutes,
@@ -220,7 +222,7 @@ Scheduler.create_if_not_exists(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.create_if_not_exists(
+Scheduler.find_or_create_by!(
   name:          __('Delete old upload cache entries.'),
   method:        'UploadCacheCleanupJob.perform_now',
   period:        1.month,
@@ -229,7 +231,7 @@ Scheduler.create_if_not_exists(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.create_if_not_exists(
+Scheduler.find_or_create_by!(
   name:          __('Clean up cache.'),
   method:        'CacheClearJob.perform_now',
   period:        10.minutes,

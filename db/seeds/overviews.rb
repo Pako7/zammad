@@ -1,7 +1,10 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> overviews"
+
 overview_role = Role.find_by(name: 'Agent')
-Overview.create_if_not_exists(
+
+Overview.find_or_create_by!(
   name:      __('My Assigned Tickets'),
   link:      'my_assigned',
   prio:      1000,
@@ -28,7 +31,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('Unassigned & Open Tickets'),
   link:      'all_unassigned',
   prio:      1010,
@@ -55,7 +58,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('My Pending Reached Tickets'),
   link:      'my_pending_reached',
   prio:      1020,
@@ -87,7 +90,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('My Subscribed Tickets'),
   link:      'my_subscribed_tickets',
   prio:      1025,
@@ -105,7 +108,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('Open Tickets'),
   link:      'all_open',
   prio:      1030,
@@ -128,7 +131,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('Pending Reached Tickets'),
   link:      'all_pending_reached',
   prio:      1040,
@@ -156,7 +159,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('Escalated Tickets'),
   link:      'all_escalated',
   prio:      1050,
@@ -180,7 +183,7 @@ Overview.create_if_not_exists(
   },
 )
 
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:          __('My Replacement Tickets'),
   link:          'my_replacement_tickets',
   prio:          1080,
@@ -209,7 +212,7 @@ Overview.create_if_not_exists(
 )
 
 overview_role = Role.find_by(name: 'Customer')
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:      __('My Tickets'),
   link:      'my_tickets',
   prio:      1100,
@@ -235,7 +238,7 @@ Overview.create_if_not_exists(
     view_mode_default: 's',
   },
 )
-Overview.create_if_not_exists(
+Overview.find_or_create_by!(
   name:                __('My Organization Tickets'),
   link:                'my_organization_tickets',
   prio:                1200,

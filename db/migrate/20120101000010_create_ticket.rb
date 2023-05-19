@@ -277,8 +277,8 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews, :users, column: :created_by_id
     add_foreign_key :overviews, :users, column: :updated_by_id
 
+    # pako, note relation with tenant
     create_table :overviews_roles, id: false do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :role
     end
@@ -287,8 +287,8 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews_roles, :overviews
     add_foreign_key :overviews_roles, :roles
 
+    # pako, not relation with tenant
     create_table :overviews_users, id: false do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :user
     end
@@ -297,8 +297,8 @@ class CreateTicket < ActiveRecord::Migration[4.2]
     add_foreign_key :overviews_users, :overviews
     add_foreign_key :overviews_users, :users
 
+    # pako, not relation with tenant
     create_table :overviews_groups, id: false do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.references :overview
       t.references :group
     end
@@ -552,8 +552,8 @@ class CreateTicket < ActiveRecord::Migration[4.2]
       t.timestamps limit: 3, null: false
     end
     add_index :chat_agents, [:active]
-    add_index :chat_agents, [:updated_by_id :tenant_id], unique: true
-    add_index :chat_agents, [:created_by_id :tenant_id], unique: true
+    add_index :chat_agents, %i[updated_by_id tenant_id], unique: true
+    add_index :chat_agents, %i[created_by_id tenant_id], unique: true
     add_foreign_key :chat_agents, :users, column: :created_by_id
     add_foreign_key :chat_agents, :users, column: :updated_by_id
 

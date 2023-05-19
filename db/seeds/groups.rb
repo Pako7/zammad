@@ -1,6 +1,8 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-Group.create_if_not_exists(
+puts "seeds -> groups"
+
+Group.find_or_create_by!(
   name:          __('Users'),
   signature_id:  Signature.first.id,
   note:          __('Standard Group/Pool for Tickets.'),

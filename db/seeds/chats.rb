@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> chats"
+
 Chat.create_if_not_exists(
   name:          'default',
   max_queue:     5,

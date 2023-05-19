@@ -163,6 +163,7 @@ class CreateBase < ActiveRecord::Migration[4.2]
     end
     add_index :permissions, %i[name tenant_id], unique: true
 
+    # pako, not relation with tenant
     create_table :permissions_roles, id: false do |t|
       t.belongs_to :role, index: true
       t.belongs_to :permission, index: true
@@ -664,8 +665,8 @@ class CreateBase < ActiveRecord::Migration[4.2]
     add_foreign_key :object_manager_attributes, :users, column: :created_by_id
     add_foreign_key :object_manager_attributes, :users, column: :updated_by_id
 
+    # pako, not relation with tenant
     create_table :delayed_jobs, force: true do |t|
-      t.belongs_to :tenant, index: true, null: false
       t.integer  :priority, default: 0         # Allows some jobs to jump to the front of the queue
       t.integer  :attempts, default: 0         # Provides for retries, but still fail eventually.
       t.text     :handler                      # YAML-encoded string of the object that will do work

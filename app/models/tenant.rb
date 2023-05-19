@@ -1,7 +1,7 @@
 class Tenant < ApplicationModel
 
-  def self.set_current_tenant(name)
-    tenant = Tenant.create_if_not_exists(responsible: name, subdomain: name)
+  def self.set_current_tenant(subdomain)
+    tenant = Tenant.find_or_create_by!(responsible: subdomain, subdomain: subdomain)
     ActsAsTenant.current_tenant = tenant
   end
 

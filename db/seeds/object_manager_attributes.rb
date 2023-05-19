@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> community_user_resources"
+
 ObjectManager::Attribute.add(
   force:       true,
   object:      'Ticket',

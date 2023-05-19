@@ -1,6 +1,6 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-CoreWorkflow.create_if_not_exists(
+CoreWorkflow.find_or_create_by!(
   name:            'base - hide pending time on non pending states',
   object:          'Ticket',
   condition_saved: {
@@ -20,7 +20,7 @@ CoreWorkflow.create_if_not_exists(
   created_by_id:   1,
   updated_by_id:   1,
 )
-CoreWorkflow.create_if_not_exists(
+CoreWorkflow.find_or_create_by!(
   name:            'base - show secondary organization based on user',
   object:          'Ticket',
   condition_saved: {
@@ -80,7 +80,7 @@ CoreWorkflow.create_if_not_exists(
   created_by_id:   User.first.id,
   updated_by_id:   User.first.id
 )
-CoreWorkflow.create_if_not_exists(
+CoreWorkflow.find_or_create_by!(
   name:               'base - show reopen_time_in_days',
   object:             'Group',
   condition_saved:    {},

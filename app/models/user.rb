@@ -13,6 +13,7 @@ class User < ApplicationModel
   include HasRoles
   include HasObjectManagerAttributes
   include HasTaskbars
+
   include User::Assets
   include User::Avatar
   include User::Search

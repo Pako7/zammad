@@ -1,11 +1,10 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
-puts "ssssssssssssssssssssssssssssssssssssssss"
-byebug
-Link::Type.create_if_not_exists(name: 'normal')
-Link::Object.create_if_not_exists(name: 'Ticket')
-Link::Object.create_if_not_exists(name: 'Announcement')
-Link::Object.create_if_not_exists(name: 'Question/Answer')
-Link::Object.create_if_not_exists(name: 'Idea')
-Link::Object.create_if_not_exists(name: 'Bug')
 
-puts "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+puts "seeds -> links"
+
+Link::Type.find_or_create_by!(name: 'normal')
+Link::Object.find_or_create_by!(name: 'Ticket')
+Link::Object.find_or_create_by!(name: 'Announcement')
+Link::Object.find_or_create_by!(name: 'Question/Answer')
+Link::Object.find_or_create_by!(name: 'Idea')
+Link::Object.find_or_create_by!(name: 'Bug')

@@ -1,18 +1,20 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-Permission.create_if_not_exists(
+puts "seeds -> permissions"
+
+Permission.find_or_create_by!(
   name:        'admin',
   note:        __('Admin Interface'),
   preferences: {},
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.user',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Users')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.group',
   note:        __('Manage %s'),
   preferences: {
@@ -82,35 +84,35 @@ Permission.create_if_not_exists(
     translations: [__('SLA')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.trigger',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Triggers')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.scheduler',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Scheduler')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.report_profile',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Report Profiles')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.channel_web',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Web')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.channel_formular',
   note:        __('Manage %s'),
   preferences: {
@@ -278,21 +280,21 @@ Permission.create_if_not_exists(
     translations: [__('Webhooks')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.core_workflow',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Core Workflow')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.public_links',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Public Links')]
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:         'user_preferences',
   note:         __('User Preferences'),
   preferences:  {},
@@ -439,7 +441,7 @@ Permission.create_if_not_exists(
     disabled: true
   },
 )
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'cti.agent',
   note:        __('Access to %s'),
   preferences: {
@@ -447,7 +449,7 @@ Permission.create_if_not_exists(
   },
 )
 
-Permission.create_if_not_exists(
+Permission.find_or_create_by!(
   name:        'admin.knowledge_base',
   note:        __('Create and set up %s'),
   preferences: {
