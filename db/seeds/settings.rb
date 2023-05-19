@@ -2,13 +2,13 @@
 
 puts "seeds -> settings"
 
-set_1 = Setting.find_or_create_by!(
+set_1 = Setting.find_or_initialize_by(
+  title:       __('Application secret'),
   name:        'application_secret',
   area:        'Core',
+  description: __('Defines the random application secret.'),
 )
 set_1.update!(
-  title:       __('Application secret'),
-  description: __('Defines the random application secret.'),
   options:     {},
   state:       SecureRandom.hex(128),
   preferences: {
@@ -18,40 +18,40 @@ set_1.update!(
   frontend:    false
 )
 
-set_2 = Setting.find_or_create_by!(
+set_2 = Setting.find_or_initialize_by(
+  title:       __('System Init Done'),
   name:        'system_init_done',
-  area:        'Core'
+  area:        'Core',
+  description: __('Defines if application is in init mode.'),
 )
 set_2.update!(
-  title:       __('System Init Done'),
-  description: __('Defines if application is in init mode.'),
   options:     {},
   state:       false,
   preferences: { online_service_disable: true },
   frontend:    true
 )
 
-set_3 = Setting.find_or_create_by!(
+set_3 = Setting.find_or_initialize_by(
+  title:       __('App Version'),
   name:        'app_version',
-  area:        'Core::WebApp'
+  area:        'Core::WebApp',
+  description: __('Only used internally to propagate current web app version to clients.'),
 )
 set_3.update!(
-  title:       __('App Version'),
-  description: __('Only used internally to propagate current web app version to clients.'),
   options:     {},
   state:       '',
   preferences: { online_service_disable: true },
   frontend:    false
 )
 
-set_4 = Setting.find_or_create_by!(
+set_4 = Setting.find_or_initialize_by(
+  title:       __('Maintenance Mode'),
   name:        'maintenance_mode',
-  area:        'Core::WebApp'
+  area:        'Core::WebApp',
+  description: __('Enable or disable the maintenance mode of Zammad. If enabled, all non-administrators get logged out and only administrators can start a new session.'),
 )
 
 set_4.update!(
-  title:       __('Maintenance Mode'),
-  description: __('Enable or disable the maintenance mode of Zammad. If enabled, all non-administrators get logged out and only administrators can start a new session.'),
   options:     {},
   state:       false,
   preferences: {
@@ -60,14 +60,14 @@ set_4.update!(
   frontend:    true
 )
 
-set_5 = Setting.find_or_create_by!(
+set_5 = Setting.find_or_initialize_by(
+  title:       __('Maintenance Login'),
   name:        'maintenance_login',
-  area:        'Core::WebApp'
+  area:        'Core::WebApp',
+  description: __('Put a message on the login page. To change it, click on the text area below and change it in-line.'),
 )
 
 set_5.update!(
-  title:       __('Maintenance Login'),
-  description: __('Put a message on the login page. To change it, click on the text area below and change it in-line.'),
   options:     {},
   state:       false,
   preferences: {
@@ -76,13 +76,13 @@ set_5.update!(
   frontend:    true
 )
 
-set_6 = Setting.find_or_create_by!(
+set_6 = Setting.find_or_initialize_by(
+  title:       __('Maintenance Login'),
   name:        'maintenance_login_message',
-  area:        'Core::WebApp'
+  area:        'Core::WebApp',
+  description: __('Message for login page.'),
 )
 set_6.update!(
-  title:       __('Maintenance Login'),
-  description: __('Message for login page.'),
   options:     {},
   state:       __('This is a default maintenance message. Click here to change.'),
   preferences: {
@@ -91,41 +91,42 @@ set_6.update!(
   frontend:    true
 )
 
-set_7 = Setting.find_or_create_by!(
+set_7 = Setting.find_or_initialize_by(
+  title:       __('Developer System'),
   name:        'developer_mode',
-  area:        'Core::Develop'
+  area:        'Core::Develop',
+  description: __('Defines if the application is in developer mode (all users have the same password and password reset will work without email delivery).'),
 )
 
 set_7.update!(
-  title:       __('Developer System'),
-  description: __('Defines if the application is in developer mode (all users have the same password and password reset will work without email delivery).'),
   options:     {},
   state:       Rails.env.development?,
   preferences: { online_service_disable: true },
   frontend:    true
 )
 
-set_8 = Setting.find_or_create_by!(
+set_8 = Setting.find_or_initialize_by(
+  title:       __('Online Service'),
   name:        'system_online_service',
-  area:        'Core'
+  area:        'Core',
+  description: __('Defines if application is used as online service.'),
 )
 
 set_8.update!(
-  title:       __('Online Service'),
-  description: __('Defines if application is used as online service.'),
   options:     {},
   state:       false,
   preferences: { online_service_disable: true },
   frontend:    true
 )
 
-puts "seeds -> settings iiiiii"
-
-set_9 = Setting.find_or_create_by!(
+set_9 = Setting.find_or_initialize_by(
   title:       __('Product Name'),
   name:        'product_name',
   area:        'System::Branding',
   description: __('Defines the name of the application, shown in the web interface, tabs, and title bar of the web browser.'),
+)
+
+set_9.update!(
   options:     {
     form: [
       {
@@ -145,11 +146,15 @@ set_9 = Setting.find_or_create_by!(
   state:       __('Zammad Helpdesk'),
   frontend:    true
 )
-set_10 = Setting.find_or_create_by!(
+
+set_10 = Setting.find_or_initialize_by(
   title:       __('Logo'),
   name:        'product_logo',
   area:        'System::Branding',
   description: __('Defines the logo of the application, shown in the web interface.'),
+)
+
+set_10.update!(
   options:     {
     form: [
       {
@@ -168,11 +173,15 @@ set_10 = Setting.find_or_create_by!(
   state:       'logo.svg',
   frontend:    true
 )
-set_11 = Setting.find_or_create_by!(
+
+set_11 = Setting.find_or_initialize_by(
   title:       __('Organization'),
   name:        'organization',
   area:        'System::Branding',
   description: __('Will be shown in the app and is included in email footers.'),
+)
+
+set_11.update!(
   options:     {
     form: [
       {
@@ -191,11 +200,16 @@ set_11 = Setting.find_or_create_by!(
   },
   frontend:    true
 )
-set_12 = Setting.find_or_create_by!(
+
+set_12 = Setting.find_or_initialize_by(
   title:       __('Locale'),
   name:        'locale_default',
   area:        'System::Branding',
   description: __('Defines the default system language.'),
+)
+
+set_12.update!(
+  
   options:     {
     form: [
       {
@@ -211,11 +225,16 @@ set_12 = Setting.find_or_create_by!(
   },
   frontend:    true
 )
-set_13 = Setting.find_or_create_by!(
+
+set_13 = Setting.find_or_initialize_by(
   title:       __('Timezone'),
   name:        'timezone_default',
   area:        'System::Branding',
   description: __('Defines the default system timezone.'),
+)
+
+set_13.update!(
+  
   options:     {
     form: [
       {
@@ -231,11 +250,15 @@ set_13 = Setting.find_or_create_by!(
   },
   frontend:    true
 )
-set_14 = Setting.create_or_update(
+
+set_14 = Setting.find_or_initialize_by(
   title:       __('Pretty Date'),
   name:        'pretty_date_format',
   area:        'System::Branding',
   description: __('Defines pretty date format.'),
+)
+puts "uuuuu"
+set_14.update!(
   options:     {
     form: [
       {
@@ -260,15 +283,20 @@ set_14 = Setting.create_or_update(
   state:       'relative',
   frontend:    true
 )
+
 options = {}
 (10..99).each do |item|
   options[item] = item
 end
 system_id = rand(10..99) # rubocop:disable Zammad/ForbidRand
-set_15 = Setting.create_if_not_exists(
+puts "rrrrrrrrrr"
+set_15 = Setting.find_or_initialize_by(
   title:       __('SystemID'),
   name:        'system_id',
   area:        'System::Base',
+ )
+
+set_15.update!(
   description: __('Defines the system identifier. Every ticket number contains this ID. This ensures that only tickets which belong to your system will be processed as follow-ups (useful when communicating between two instances of Zammad).'),
   options:     {
     form: [
@@ -290,11 +318,14 @@ set_15 = Setting.create_if_not_exists(
   },
   frontend:    true
 )
-puts "ddddddddddddddddddddddddddddd"
-set_16 = Setting.find_or_create_by!(
-  title:       __('Fully Qualified Domain Name'),
+puts "oooooooooooooooooooooo"
+set_16 = Setting.find_or_initialize_by(
   name:        'fqdn',
   area:        'System::Base',
+)
+
+set_16.update!(
+  title:       __('Fully Qualified Domain Name'),
   description: __('Defines the fully qualified domain name of the system. This setting is used as a variable, #{setting.fqdn} which is found in all forms of messaging used by the application, to build links to the tickets within your system.'), # rubocop:disable Lint/InterpolationCheck
   options:     {
     form: [
@@ -314,18 +345,25 @@ set_16 = Setting.find_or_create_by!(
   },
   frontend:    true
 )
-Setting.find_or_create_by!(
-  title:       __('Websocket backend'),
+puts "hhhhhhhhhhhhhhhhh"
+set_17 = Setting.find_or_initialize_by(
+  
   name:        'websocket_backend',
   area:        'System::WebSocket',
+)
+set_17.update!(
+  title:       __('Websocket backend'),
   description: __('Defines how to reach websocket server. "websocket" is default on production, "websocketPort" is for CI'),
   state:       Rails.env.production? ? 'websocket' : 'websocketPort',
   frontend:    true
 )
-Setting.find_or_create_by!(
-  title:       __('Websocket port'),
+
+puts "sssssssssssssssss"
+set_17 = Setting.find_or_initialize_by(
   name:        'websocket_port',
   area:        'System::WebSocket',
+).update!(
+  title:       __('Websocket port'),
   description: __('Defines the port of the websocket server.'),
   options:     {
     form: [
@@ -341,10 +379,12 @@ Setting.find_or_create_by!(
   preferences: { online_service_disable: true },
   frontend:    true
 )
-Setting.find_or_create_by!(
-  title:       __('HTTP type'),
+
+Setting.find_or_initialize_by(
   name:        'http_type',
   area:        'System::Base',
+).update!(
+  title:       __('HTTP type'),
   description: __('Defines the HTTP protocol of your instance.'),
   options:     {
     form: [
@@ -369,10 +409,12 @@ Setting.find_or_create_by!(
   frontend:    true
 )
 
-Setting.find_or_create_by!(
-  title:       __('Storage Mechanism'),
+puts "mmmmmmm"
+Setting.find_or_initialize_by(
   name:        'storage_provider',
   area:        'System::Storage',
+).update!(
+  title:       __('Storage Mechanism'),
   description: __('"Database" stores all attachments in the database (not recommended for storing large amounts of data). "Filesystem" stores the data in the filesystem. You can switch between the modules even on a system that is already in production without any loss of data.'),
   options:     {
     form: [
@@ -398,11 +440,13 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
+puts "ccccccccccccccc"
 
-Setting.find_or_create_by!(
-  title:       __('Image Service'),
+Setting.find_or_initialize_by(
   name:        'image_backend',
   area:        'System::Services',
+).update!(
+  title:       __('Image Service'),
   description: __('Defines the backend for user and organization image lookups.'),
   options:     {
     form: [
@@ -426,10 +470,12 @@ Setting.find_or_create_by!(
   frontend:    false
 )
 
-Setting.find_or_create_by!(
+puts "bggggggggg"
+Setting.find_or_initialize_by(
   title:       __('Geo IP Service'),
   name:        'geo_ip_backend',
   area:        'System::Services',
+).update!(
   description: __('Defines the backend for geo IP lookups. Also shows location of an IP address if it is traceable.'),
   options:     {
     form: [
@@ -452,11 +498,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-
-Setting.find_or_create_by!(
+puts "frfrfrfrfr"
+Setting.find_or_initialize_by(
   title:       __('Geo Location Service'),
   name:        'geo_location_backend',
   area:        'System::Services',
+).update!(
   description: __('Defines the backend for geo location lookups to store geo locations for addresses.'),
   options:     {
     form: [
@@ -479,11 +526,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-
-Setting.find_or_create_by!(
+puts "wwwwwwwwwwwwqqqqqqqqqqqq"
+Setting.find_or_initialize_by(
   title:       __('Geo Calendar Service'),
   name:        'geo_calendar_backend',
   area:        'System::Services',
+).update!(
   description: __('Defines the backend for geo calendar lookups. Used for initial calendar succession.'),
   options:     {
     form: [
@@ -506,11 +554,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-
-Setting.find_or_create_by!(
+puts "grgrgrgrgrgrg"
+Setting.find_or_initialize_by(
   title:       __('Proxy Settings'),
   name:        'proxy',
   area:        'System::Network',
+).update!(
   description: __('Address of the proxy server for http and https resources.'),
   options:     {
     form: [
@@ -532,10 +581,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-Setting.find_or_create_by!(
+
+Setting.find_or_initialize_by(
   title:       __('Proxy User'),
   name:        'proxy_username',
   area:        'System::Network',
+).update!(
   description: __('Username for proxy connection.'),
   options:     {
     form: [
@@ -556,10 +607,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-Setting.find_or_create_by!(
+puts "abbbbbbbbb"
+Setting.find_or_initialize_by(
   title:       __('Proxy Password'),
   name:        'proxy_password',
   area:        'System::Network',
+).update!(
   description: __('Password for proxy connection.'),
   options:     {
     form: [
@@ -580,10 +633,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-Setting.find_or_create_by!(
+puts "44444444444444"
+Setting.find_or_initialize_by(
   title:       __('No Proxy'),
   name:        'proxy_no',
   area:        'System::Network',
+).update!(
   description: __('No proxy for the following hosts.'),
   options:     {
     form: [
@@ -604,10 +659,12 @@ Setting.find_or_create_by!(
   },
   frontend:    false
 )
-Setting.find_or_create_by!(
+
+Setting.find_or_initialize_by(
   title:       __('Core Workflow Ajax Mode'),
   name:        'core_workflow_ajax_mode',
   area:        'System::UI',
+).update!(
   description: __('Defines if the core workflow communication should run over ajax instead of websockets.'),
   options:     {
     form: [
@@ -630,10 +687,13 @@ Setting.find_or_create_by!(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+puts "8888888888888"
+Setting.find_or_initialize_by(
   title:       __('User Organization Selector - email'),
   name:        'ui_user_organization_selector_with_email',
   area:        'UI::UserOrganizatiomSelector',
+
+).update!(
   description: __('Defines if the email should be displayed in the result of the user/organization widget.'),
   options:     {
     form: [
@@ -657,10 +717,12 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Note - default visibility'),
   name:        'ui_ticket_zoom_article_note_new_internal',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Defines the default visibility for new notes.'),
   options:     {
     form: [
@@ -685,10 +747,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+puts "99999999999"
+Setting.find_or_initialize_by(
   title:       __('Article - visibility confirmation dialog'),
   name:        'ui_ticket_zoom_article_visibility_confirmation_dialog',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Defines if the agent has to accept a confirmation dialog when changing the article visibility to "public".'),
   options:     {
     form: [
@@ -712,10 +776,11 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Email - subject field'),
   name:        'ui_ticket_zoom_article_email_subject',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Use subject field for emails. If disabled, the ticket title will be used as subject.'),
   options:     {
     form: [
@@ -739,10 +804,13 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+puts "axaxax"
+Setting.find_or_initialize_by(
   title:       __('Email - full quote'),
   name:        'ui_ticket_zoom_article_email_full_quote',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Enable if you want to quote the full email in your answer. The quoted email will be put at the end of your answer. If you just want to quote a certain phrase, just mark the text and press reply (this feature is always available).'),
   options:     {
     form: [
@@ -766,10 +834,13 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+puts "qsqsqsqs"
+Setting.find_or_initialize_by(
   title:       __('Email - quote header'),
   name:        'ui_ticket_zoom_article_email_full_quote_header',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Enable if you want a timestamped reply header to be automatically inserted in front of quoted messages.'),
   options:     {
     form: [
@@ -793,10 +864,11 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Twitter - tweet initials'),
   name:        'ui_ticket_zoom_article_twitter_initials',
   area:        'UI::TicketZoom',
+).update!(
   description: __('Add sender initials to end of a tweet.'),
   options:     {
     form: [
@@ -820,10 +892,12 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Sidebar Attachments'),
   name:        'ui_ticket_zoom_attachments_preview',
   area:        'UI::TicketZoom::Preview',
+
+).update!(
   description: __('Enables preview of attachments.'),
   options:     {
     form: [
@@ -847,10 +921,12 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Sidebar Attachments'),
   name:        'ui_ticket_zoom_sidebar_article_attachments',
   area:        'UI::TicketZoom::Preview',
+
+).update!(
   description: __('Enables a sidebar to show an overview of all attachments.'),
   options:     {
     form: [
@@ -874,11 +950,13 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-
-Setting.create_if_not_exists(
+puts "0909090909090"
+Setting.find_or_initialize_by(
   title:       __('Set notes for ticket create types.'),
   name:        'ui_ticket_create_notes',
   area:        'UI::TicketCreate',
+
+).update!(
   description: __('Set notes for ticket create types by selecting type.'),
   options:     {},
   state:       {
@@ -889,11 +967,13 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-
-Setting.create_if_not_exists(
+puts "11111111111111"
+Setting.find_or_initialize_by(
   title:       __('Default type for a new ticket'),
   name:        'ui_ticket_create_default_type',
   area:        'UI::TicketCreate',
+
+).update!(
   description: __('Select default ticket type'),
   options:     {
     form: [
@@ -918,10 +998,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Available types for a new ticket'),
   name:        'ui_ticket_create_available_types',
   area:        'UI::TicketCreate',
+ 
+).update!(
   description: __('Set available ticket types'),
   options:     {
     form: [
@@ -945,11 +1027,13 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-
-Setting.create_if_not_exists(
+puts "ererererererer"
+Setting.find_or_initialize_by(
   title:       __('Open ticket indicator'),
   name:        'ui_sidebar_open_ticket_indicator_colored',
   area:        'UI::Sidebar',
+
+).update!(
   description: __('Color representation of the open ticket indicator in the sidebar.'),
   options:     {
     form: [
@@ -970,13 +1054,15 @@ Setting.create_if_not_exists(
   preferences: {
     permission: ['admin.ui'],
   },
-  frontend:    true
+  frontend:    true  
 )
-
-Setting.create_if_not_exists(
+puts "2222222222222"
+Setting.find_or_initialize_by(
   title:       __('Open ticket indicator'),
   name:        'ui_table_group_by_show_count',
   area:        'UI::Base',
+
+).update!(
   description: __('Total display of the number of objects in a grouping.'),
   options:     {
     form: [
@@ -1000,10 +1086,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Priority Icons in Overviews'),
   name:        'ui_ticket_overview_priority_icon',
   area:        'UI::TicketOverview::PriorityIcons',
+
+).update!(
   description: __('Enables priority icons in ticket overviews.'),
   options:     {
     form: [
@@ -1028,10 +1116,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Maximum number of ticket shown in overviews'),
   name:        'ui_ticket_overview_ticket_limit',
   area:        'UI::TicketOverview::TicketLimit',
+
+).update!(
   description: __('Define the maximum number of ticket shown in overviews.'),
   options:     {},
   state:       2000,
@@ -1041,10 +1131,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.find_or_create_by!(
+Setting.find_or_initialize_by(
   title:       __('Maximum number of open tabs.'),
   name:        'ui_task_mananger_max_task_count',
   area:        'UI::TaskManager::Task::MaxCount',
+
+).update!(
   description: __('Defines the maximum number of allowed open tabs before auto cleanup removes surplus tabs when creating new tabs.'),
   options:     {},
   state:       30,
@@ -1054,10 +1146,12 @@ Setting.find_or_create_by!(
   frontend:    true
 )
 
-Setting.find_or_create_by!(
+Setting.find_or_initialize_by(
   title:       __('Password Login'),
   name:        'user_show_password_login',
   area:        'Security::Base',
+
+).update!(
   description: __('Show password login for users on login page. Disabling only takes effect if third-party authentication is enabled.'),
   options:     {
     form: [
@@ -1080,11 +1174,13 @@ Setting.find_or_create_by!(
   },
   frontend:    true
 )
-
-Setting.create_if_not_exists(
+puts "eeeeeeeeeeeeeeeeeeeeeeeeeeeee" 
+Setting.find_or_initialize_by(
   title:       __('New User Accounts'),
   name:        'user_create_account',
   area:        'Security::Base',
+
+).update!(
   description: __('Enables users to create their own account via web interface. This setting is only effective if the password login is enabled.'),
   options:     {
     form: [
@@ -1107,10 +1203,12 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Lost Password'),
   name:        'user_lost_password',
   area:        'Security::Base',
+
+).update!(
   description: __('Activates lost password feature for users. This setting is only effective if the password login is enabled.'),
   options:     {
     form: [
@@ -1135,10 +1233,12 @@ Setting.create_if_not_exists(
 )
 
 options = [ { value: '0', name: 'disabled' }, { value: 1.hour.seconds.to_s, name: __('1 hour') }, { value: 2.hours.seconds.to_s, name: __('2 hours') }, { value: 1.day.seconds.to_s, name: __('1 day') }, { value: 7.days.seconds.to_s, name: __('1 week') }, { value: 14.days.seconds.to_s, name: __('2 weeks') }, { value: 21.days.seconds.to_s, name: __('3 weeks') }, { value: 28.days.seconds.to_s, name: __('4 weeks') } ]
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Session Timeout'),
   name:        'session_timeout',
   area:        'Security::Base',
+  
+).update!(
   description: __('Defines the session timeout for inactivity of users. Based on the assigned permissions the highest timeout value will be used, otherwise the default.'),
   options:     {
     form: [
@@ -1187,10 +1287,12 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('User email for multiple users'),
   name:        'user_email_multiple_use',
   area:        'Model::User',
+
+).update!(
   description: __('Allow using one email address for multiple users.'),
   options:     {
     form: [
@@ -1212,10 +1314,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_internal',
   area:        'Security::Authentication',
+
+).update!(
   description: __('Enables user authentication via %s.'),
   preferences: {
     title_i18n:       [__('internal database')],
@@ -1228,10 +1332,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_developer',
   area:        'Security::Authentication',
+
+).update!(
   description: __('Enables user authentication via %s.'),
   preferences: {
     title_i18n:       [__('developer password')],
@@ -1244,10 +1350,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_ldap',
   area:        'Security::Authentication',
+
+).update!(
   description: __('Enables user authentication via %s.'),
   preferences: {
     title_i18n:       [__('LDAP')],
@@ -1275,10 +1383,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Automatic account link on initial logon'),
   name:        'auth_third_party_auto_link_at_inital_login',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables the automatic linking of an existing account on initial login via a third party application. If this is disabled, an existing user must first log into Zammad and then link his "Third Party" account to his Zammad account via Profile -> Linked Accounts.'),
   options:     {
     form: [
@@ -1301,10 +1411,11 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Automatic account linking notification'),
   name:        'auth_third_party_linking_notification',
-  area:        'Security::ThirdPartyAuthentication',
+  area:        'Security::ThirdPartyAuthentication'
+).update!(
   description: __('Enables sending of an email notification to a user when they link their account with a third-party application.'),
   options:     {
     form: [
@@ -1327,10 +1438,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_twitter',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1356,10 +1469,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Twitter App Credentials'),
   name:        'auth_twitter_credentials',
   area:        'Security::ThirdPartyAuthentication::Twitter',
+
+).update!(
   description: __('App credentials for Twitter.'),
   options:     {
     form: [
@@ -1390,10 +1505,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_facebook',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1420,10 +1537,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Facebook App Credentials'),
   name:        'auth_facebook_credentials',
   area:        'Security::ThirdPartyAuthentication::Facebook',
+
+).update!(
   description: __('App credentials for Facebook.'),
   options:     {
     form: [
@@ -1455,10 +1574,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_google_oauth2',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1484,10 +1605,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Google App Credentials'),
   name:        'auth_google_oauth2_credentials',
   area:        'Security::ThirdPartyAuthentication::Google',
+
+).update!(
   description: __('Enables user authentication via Google.'),
   options:     {
     form: [
@@ -1519,10 +1642,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_linkedin',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1548,10 +1673,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('LinkedIn App Credentials'),
   name:        'auth_linkedin_credentials',
   area:        'Security::ThirdPartyAuthentication::Linkedin',
+
+).update!(
   description: __('Enables user authentication via LinkedIn.'),
   options:     {
     form: [
@@ -1583,10 +1710,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.find_or_create_by!(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_github',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1612,10 +1741,12 @@ Setting.find_or_create_by!(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('GitHub App Credentials'),
   name:        'auth_github_credentials',
   area:        'Security::ThirdPartyAuthentication::Github',
+
+).update!(
   description: __('Enables user authentication via GitHub.'),
   options:     {
     form: [
@@ -1647,10 +1778,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_gitlab',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1676,10 +1809,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('GitLab App Credentials'),
   name:        'auth_gitlab_credentials',
   area:        'Security::ThirdPartyAuthentication::GitLab',
+
+).update!(
   description: __('Enables user authentication via GitLab.'),
   options:     {
     form: [
@@ -1718,10 +1853,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_microsoft_office365',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1747,10 +1884,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Microsoft 365 App Credentials'),
   name:        'auth_microsoft_office365_credentials',
   area:        'Security::ThirdPartyAuthentication::Office365',
+
+).update!(
   description: __('Enables user authentication via Microsoft 365.'),
   options:     {
     form: [
@@ -1788,10 +1927,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+puts "3w3w3w3"
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_weibo',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s. Register your app first at [%s](%s).'),
   options:     {
     form: [
@@ -1817,10 +1959,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Weibo App Credentials'),
   name:        'auth_weibo_credentials',
   area:        'Security::ThirdPartyAuthentication::Weibo',
+
+).update!(
   description: __('Enables user authentication via Weibo.'),
   options:     {
     form: [
@@ -1851,10 +1995,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+puts "t5t5t5t"
+Setting.find_or_initialize_by(
   title:       __('Authentication via %s'),
   name:        'auth_saml',
   area:        'Security::ThirdPartyAuthentication',
+
+).update!(
   description: __('Enables user authentication via %s.'),
   options:     {
     form: [
@@ -1880,10 +2027,12 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('SAML App Credentials'),
   name:        'auth_saml_credentials',
   area:        'Security::ThirdPartyAuthentication::SAML',
+
+).update!(
   description: __('Enables user authentication via SAML.'),
   options:     {
     form: [
@@ -1953,10 +2102,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Minimum length'),
   name:        'password_min_size',
   area:        'Security::Password',
+
+).update!(
   description: __('Password needs to have at least a minimal number of characters.'),
   options:     {
     form: [
@@ -1993,10 +2144,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('2 lower case and 2 upper case characters'),
   name:        'password_min_2_lower_2_upper_characters',
   area:        'Security::Password',
+
+).update!(
   description: __('Password needs to contain 2 lower case and 2 upper case characters.'),
   options:     {
     form: [
@@ -2019,10 +2172,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Digit required'),
   name:        'password_need_digit',
   area:        'Security::Password',
+
+).update!(
   description: __('Password needs to contain at least one digit.'),
   options:     {
     form: [
@@ -2045,10 +2201,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+puts "wewewewewewe"
+Setting.find_or_initialize_by(
   title:       __('Special character required'),
   name:        'password_need_special_character',
   area:        'Security::Password',
+
+).update!(
   description: __('Password needs to contain at least one special character.'),
   options:     {
     form: [
@@ -2071,10 +2230,12 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Maximum failed logins'),
   name:        'password_max_login_failed',
   area:        'Security::Password',
+
+).update!(
   description: __('Defines after how many failed logins accounts will be deactivated.'),
   options:     {
     form: [
@@ -2112,10 +2273,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Ticket Hook'),
   name:        'ticket_hook',
   area:        'Ticket::Base',
+
+).update!(
   description: __('The identifier for a ticket, e.g. Ticket#, Call#, MyTicket#. The default is Ticket#.'),
   options:     {
     form: [
@@ -2137,10 +2300,13 @@ Setting.create_if_not_exists(
   state:       'Ticket#',
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Hook Divider'),
   name:        'ticket_hook_divider',
   area:        'Ticket::Base::Shadow',
+
+).update!(
   description: __('The divider between TicketHook and ticket number. E. g. \': \'.'),
   options:     {
     form: [
@@ -2158,42 +2324,49 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Hook Position'),
   name:        'ticket_hook_position',
   area:        'Ticket::Base',
+
+).update!(
   description: __("The format of the subject.
-* **Right** means **Some Subject [Ticket#12345]**
-* **Left** means **[Ticket#12345] Some Subject**
-* **None** means **Some Subject** (without ticket number), in which case it recognizes follow-ups based on email headers."),
-  options:     {
-    form: [
-      {
-        display:   '',
-        null:      true,
-        name:      'ticket_hook_position',
-        tag:       'select',
-        translate: true,
-        options:   {
-          'left'  => __('left'),
-          'right' => __('right'),
-          'none'  => __('none'),
-        },
+    * **Right** means **Some Subject [Ticket#12345]**
+    * **Left** means **[Ticket#12345] Some Subject**
+    * **None** means **Some Subject** (without ticket number), in which case it recognizes follow-ups based on email headers."),
+      options:     {
+        form: [
+          {
+            display:   '',
+            null:      true,
+            name:      'ticket_hook_position',
+            tag:       'select',
+            translate: true,
+            options:   {
+              'left'  => __('left'),
+              'right' => __('right'),
+              'none'  => __('none'),
+            },
+          },
+        ],
       },
-    ],
-  },
-  state:       'right',
-  preferences: {
-    prio:       2000,
-    controller: 'SettingsAreaTicketHookPosition',
-    permission: ['admin.ticket'],
-  },
-  frontend:    false
+      state:       'right',
+      preferences: {
+        prio:       2000,
+        controller: 'SettingsAreaTicketHookPosition',
+        permission: ['admin.ticket'],
+      },
+      frontend:    false
 )
-Setting.create_if_not_exists(
+
+puts "ededed"
+Setting.find_or_initialize_by(
   title:       __('Ticket Last Contact Behaviour'),
   name:        'ticket_last_contact_behaviour',
   area:        'Ticket::Base',
+
+).update!(
   description: __('Defines how the last customer contact time of tickets should be calculated.'),
   options:     {
     form: [
@@ -2217,10 +2390,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Conditions Expert Mode'),
   name:        'ticket_allow_expert_conditions',
   area:        'Ticket::Core',
+
+).update!(
   description: __('Defines if the ticket conditions editor supports complex logical expressions.'),
   options:     {
     form: [
@@ -2243,40 +2419,46 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Number Format'),
   name:        'ticket_number',
   area:        'Ticket::Number',
+
+).update!(
   description: __("Selects the ticket number generator module.
-* **Increment** increments the ticket number, the SystemID and the counter are used with SystemID.Counter format (e.g. 1010138, 1010139).
-* With **Date** the ticket numbers will be generated by the current date, the SystemID and the counter. The format looks like Year.Month.Day.SystemID.counter (e.g. 201206231010138, 201206231010139)."),
-  options:     {
-    form: [
-      {
-        display:   '',
-        null:      true,
-        name:      'ticket_number',
-        tag:       'select',
-        translate: true,
-        options:   {
-          'Ticket::Number::Increment' => __('Increment (SystemID.Counter)'),
-          'Ticket::Number::Date'      => __('Date (Year.Month.Day.SystemID.Counter)'),
-        },
+    * **Increment** increments the ticket number, the SystemID and the counter are used with SystemID.Counter format (e.g. 1010138, 1010139).
+    * With **Date** the ticket numbers will be generated by the current date, the SystemID and the counter. The format looks like Year.Month.Day.SystemID.counter (e.g. 201206231010138, 201206231010139)."),
+      options:     {
+        form: [
+          {
+            display:   '',
+            null:      true,
+            name:      'ticket_number',
+            tag:       'select',
+            translate: true,
+            options:   {
+              'Ticket::Number::Increment' => __('Increment (SystemID.Counter)'),
+              'Ticket::Number::Date'      => __('Date (Year.Month.Day.SystemID.Counter)'),
+            },
+          },
+        ],
       },
-    ],
-  },
-  state:       'Ticket::Number::Increment',
-  preferences: {
-    settings_included: %w[ticket_number_increment ticket_number_date],
-    controller:        'SettingsAreaTicketNumber',
-    permission:        ['admin.ticket'],
-  },
-  frontend:    false
+      state:       'Ticket::Number::Increment',
+      preferences: {
+        settings_included: %w[ticket_number_increment ticket_number_date],
+        controller:        'SettingsAreaTicketNumber',
+        permission:        ['admin.ticket'],
+      },
+      frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Number Increment'),
   name:        'ticket_number_increment',
   area:        'Ticket::Number',
+
+).update!(
   description: '-',
   options:     {
     form: [
@@ -2330,10 +2512,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Ticket Number Increment Date'),
   name:        'ticket_number_date',
   area:        'Ticket::Number',
+
+).update!(
   description: '-',
   options:     {
     form: [
@@ -2359,10 +2544,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Auto Assignment'),
   name:        'ticket_auto_assignment',
   area:        'Web::Base',
+
+).update!(
   description: __('Enable ticket auto assignment.'),
   options:     {
     form: [
@@ -2385,10 +2572,13 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Auto Assignment Selector'),
   name:        'ticket_auto_assignment_selector',
   area:        'Web::Base',
+
+).update!(
   description: __('Enable auto assignment for following matching tickets.'),
   options:     {
     form: [
@@ -2402,10 +2592,13 @@ Setting.create_if_not_exists(
   state:       { condition: { 'ticket.state_id' => { operator: 'is', value: Ticket::State.by_category(:work_on).pluck(:id) } } },
   frontend:    true
 )
-Setting.create_or_update(
+
+Setting.find_or_initialize_by(
   title:       __('Auto Assignment Ignored Users'),
   name:        'ticket_auto_assignment_user_ids_ignore',
   area:        'Web::Base',
+
+).update!(
   description: __('Define an exception of "automatic assignment" for certain users (e.g. executives).'),
   options:     {
     form: [
@@ -2419,10 +2612,12 @@ Setting.create_or_update(
   state:       [],
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Ticket Number ignore system_id'),
   name:        'ticket_number_ignore_system_id',
   area:        'Ticket::Core',
+
+).update!(
   description: '-',
   options:     {
     form: [
@@ -2446,10 +2641,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Recursive Ticket Triggers'),
   name:        'ticket_trigger_recursive',
   area:        'Ticket::Core',
+
+).update!(
   description: __('Activate the recursive processing of ticket triggers.'),
   options:     {
     form: [
@@ -2472,10 +2669,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Recursive Ticket Triggers Loop Max.'),
   name:        'ticket_trigger_recursive_max_loop',
   area:        'Ticket::Core',
+
+).update!(
   description: __('Maximum number of recursively executed triggers.'),
   options:     {
     form: [
@@ -2517,10 +2717,12 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Enable Ticket creation'),
   name:        'customer_ticket_create',
   area:        'CustomerWeb::Base',
+
+).update!(
   description: __('Defines if a customer can create tickets via the web interface.'),
   options:     {
     form: [
@@ -2544,10 +2746,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Group selection for Ticket creation'),
   name:        'customer_ticket_create_group_ids',
   area:        'CustomerWeb::Base',
+
+).update!(
   description: __('Defines groups for which a customer can create tickets via web interface. No selection means all groups are available.'),
   options:     {
     form: [
@@ -2569,10 +2773,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Tab behaviour after ticket action'),
   name:        'ticket_secondary_action',
   area:        'CustomerWeb::Base',
+
+).update!(
   description: __('Defines the tab behaviour after a ticket action.'),
   options:     {
     form: [
@@ -2598,10 +2804,12 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Enable Ticket creation'),
   name:        'form_ticket_create',
   area:        'Form::Base',
+
+).update!(
   description: __('Defines if tickets can be created via web form.'),
   options:     {
     form: [
@@ -2632,10 +2840,12 @@ group_id = 1
 if group
   group_id = group.id
 end
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Group selection for ticket creation'),
   name:        'form_ticket_create_group_id',
   area:        'Form::Base',
+
+).update!(
   description: __('Defines the group of tickets created via web form.'),
   options:     {
     form: [
@@ -2652,13 +2862,14 @@ Setting.create_if_not_exists(
   preferences: {
     permission: ['admin.channel_formular'],
   },
-  frontend:    false,
+  frontend:    false,  
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_initialize_by(
   title:       __('Limit tickets by IP per hour'),
   name:        'form_ticket_create_by_ip_per_hour',
   area:        'Form::Base',
+).update!(
   description: __('Defines a limit for how many tickets can be created via web form from one IP address per hour.'),
   options:     {
     form: [
@@ -2676,10 +2887,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_initialize_by(
   title:       __('Limit tickets by IP per day'),
   name:        'form_ticket_create_by_ip_per_day',
   area:        'Form::Base',
+
+).update!(
   description: __('Defines a limit for how many tickets can be created via web form from one IP address per day.'),
   options:     {
     form: [
@@ -2695,12 +2909,15 @@ Setting.create_if_not_exists(
   preferences: {
     permission: ['admin.channel_formular'],
   },
-  frontend:    false,
+  frontend:    false,  
 )
-Setting.create_if_not_exists(
+puts "llplplplplplplp"
+Setting.find_or_initialize_by(
   title:       __('Limit tickets per day'),
   name:        'form_ticket_create_per_day',
   area:        'Form::Base',
+
+).update!(
   description: __('Defines a limit for how many tickets can be created via web form per day.'),
   options:     {
     form: [
@@ -2716,10 +2933,10 @@ Setting.create_if_not_exists(
   preferences: {
     permission: ['admin.channel_formular'],
   },
-  frontend:    false,
+  frontend:    false,  
 )
-
-Setting.create_if_not_exists(
+puts "sssssssss"
+Setting.find_or_create_by!(
   title:       __('Ticket Subject Size'),
   name:        'ticket_subject_size',
   area:        'Email::Base',
@@ -2740,7 +2957,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Ticket Subject Reply'),
   name:        'ticket_subject_re',
   area:        'Email::Base',
@@ -2762,7 +2979,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Ticket Subject Forward'),
   name:        'ticket_subject_fwd',
   area:        'Email::Base',
@@ -2784,7 +3001,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sender Format'),
   name:        'ticket_define_email_from',
   area:        'Email::Base',
@@ -2811,8 +3028,8 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-
-Setting.create_if_not_exists(
+puts "rerereereresssss"
+Setting.find_or_create_by!(
   title:       __('Sender Format Separator'),
   name:        'ticket_define_email_from_separator',
   area:        'Email::Base',
@@ -2834,7 +3051,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Maximum Email Size'),
   name:        'postmaster_max_size',
   area:        'Email::Base',
@@ -2884,7 +3101,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Additional follow-up detection'),
   name:        'postmaster_follow_up_search_in',
   area:        'Email::Base',
@@ -2912,7 +3129,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sender based on Reply-To header'),
   name:        'postmaster_sender_based_on_reply_to',
   area:        'Email::Base',
@@ -2940,7 +3157,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Customer selection based on sender and receiver list'),
   name:        'postmaster_sender_is_agent_search_for_customer',
   area:        'Email::Base',
@@ -2966,7 +3183,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Send postmaster mail if mail too large'),
   name:        'postmaster_send_reject_if_mail_too_large',
   area:        'Email::Base',
@@ -2993,7 +3210,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Notification Sender'),
   name:        'notification_sender',
   area:        'Email::Base',
@@ -3016,7 +3233,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Block Notifications'),
   name:        'send_no_auto_response_reg_exp',
   area:        'Email::Base',
@@ -3039,7 +3256,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('BCC address for all outgoing emails'),
   name:        'system_bcc',
   area:        'Email::Enhanced',
@@ -3050,7 +3267,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('API Token Access'),
   name:        'api_token_access',
   area:        'API::Base',
@@ -3075,7 +3292,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('API Password Access'),
   name:        'api_password_access',
   area:        'API::Base',
@@ -3101,7 +3318,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Monitoring Token'),
   name:        'monitoring_token',
   area:        'HealthCheck::Base',
@@ -3123,7 +3340,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Enable Chat'),
   name:        'chat',
   area:        'Chat::Base',
@@ -3150,7 +3367,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Agent idle timeout'),
   name:        'chat_agent_idle_timeout',
   area:        'Chat::Extended',
@@ -3172,7 +3389,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines searchable models.'),
   name:        'models_searchable',
   area:        'Models::Base',
@@ -3185,7 +3402,7 @@ Setting.create_if_not_exists(
   frontend:    true,
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Default Screen'),
   name:        'default_controller',
   area:        'Core',
@@ -3195,7 +3412,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Endpoint URL'),
   name:        'es_url',
   area:        'SearchIndex::Elasticsearch',
@@ -3204,7 +3421,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Endpoint User'),
   name:        'es_user',
   area:        'SearchIndex::Elasticsearch',
@@ -3213,7 +3430,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Endpoint Password'),
   name:        'es_password',
   area:        'SearchIndex::Elasticsearch',
@@ -3222,7 +3439,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Endpoint Index'),
   name:        'es_index',
   area:        'SearchIndex::Elasticsearch',
@@ -3231,7 +3448,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Attachment Extensions'),
   name:        'es_attachment_ignore',
   area:        'SearchIndex::Elasticsearch',
@@ -3240,7 +3457,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Attachment Size'),
   name:        'es_attachment_max_size_in_mb',
   area:        'SearchIndex::Elasticsearch',
@@ -3249,7 +3466,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Total Payload Size'),
   name:        'es_total_max_size_in_mb',
   area:        'SearchIndex::Elasticsearch',
@@ -3258,7 +3475,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Elasticsearch Pipeline Name'),
   name:        'es_pipeline',
   area:        'SearchIndex::Elasticsearch',
@@ -3268,7 +3485,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Mode'),
   name:        'import_mode',
   area:        'Import::Base',
@@ -3290,7 +3507,7 @@ Setting.create_if_not_exists(
   state:       false,
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Backend'),
   name:        'import_backend',
   area:        'Import::Base::Internal',
@@ -3299,7 +3516,7 @@ Setting.create_if_not_exists(
   state:       '',
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Ignore Escalation/SLA Information'),
   name:        'import_ignore_sla',
   area:        'Import::Base',
@@ -3322,7 +3539,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Endpoint'),
   name:        'import_otrs_endpoint',
   area:        'Import::OTRS',
@@ -3340,7 +3557,7 @@ Setting.create_if_not_exists(
   state:       'http://otrs_host/otrs',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Key'),
   name:        'import_otrs_endpoint_key',
   area:        'Import::OTRS',
@@ -3359,7 +3576,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import User for HTTP basic authentication'),
   name:        'import_otrs_user',
   area:        'Import::OTRS',
@@ -3378,7 +3595,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Password for HTTP basic authentication'),
   name:        'import_otrs_password',
   area:        'Import::OTRS',
@@ -3397,7 +3614,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Endpoint'),
   name:        'import_zendesk_endpoint',
   area:        'Import::Zendesk',
@@ -3415,7 +3632,7 @@ Setting.create_if_not_exists(
   state:       'https://yours.zendesk.com/api/v2',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import API key for requesting the Zendesk API'),
   name:        'import_zendesk_endpoint_key',
   area:        'Import::Zendesk',
@@ -3434,7 +3651,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import User for requesting the Zendesk API'),
   name:        'import_zendesk_endpoint_username',
   area:        'Import::Zendesk',
@@ -3453,7 +3670,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Endpoint'),
   name:        'import_freshdesk_endpoint',
   area:        'Import::Freshdesk',
@@ -3471,7 +3688,7 @@ Setting.create_if_not_exists(
   state:       'https://yours.freshdesk.com/api/v2',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import API key for requesting the Freshdesk API'),
   name:        'import_freshdesk_endpoint_key',
   area:        'Import::Freshdesk',
@@ -3490,7 +3707,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Endpoint'),
   name:        'import_kayako_endpoint',
   area:        'Import::Kayako',
@@ -3508,7 +3725,7 @@ Setting.create_if_not_exists(
   state:       'https://yours.kayako.com/api/v1',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import User for requesting the Kayako API'),
   name:        'import_kayako_endpoint_username',
   area:        'Import::Kayako',
@@ -3526,7 +3743,7 @@ Setting.create_if_not_exists(
   state:       '',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Password for requesting the Kayako API'),
   name:        'import_kayako_endpoint_password',
   area:        'Import::Kayako',
@@ -3545,7 +3762,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Import Backends'),
   name:        'import_backends',
   area:        'Import',
@@ -3558,7 +3775,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sequencer log level'),
   name:        'sequencer_log_level',
   area:        'Core',
@@ -3593,7 +3810,7 @@ Setting.create_if_not_exists(
   frontend:    false,
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Time Accounting'),
   name:        'time_accounting',
   area:        'Web::Base',
@@ -3620,7 +3837,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Time Accounting Selector'),
   name:        'time_accounting_selector',
   area:        'Web::Base',
@@ -3638,7 +3855,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('New Tags'),
   name:        'tag_new',
   area:        'Web::Base',
@@ -3665,7 +3882,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Default calendar tickets subscriptions'),
   name:        'defaults_calendar_subscriptions_tickets',
   area:        'Defaults::CalendarSubscriptions',
@@ -3691,7 +3908,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0005_postmaster_filter_trusted',
   area:        'Postmaster::PreFilter',
@@ -3700,7 +3917,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::Trusted',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0006_postmaster_filter_auto_response_check',
   area:        'Postmaster::PreFilter',
@@ -3709,7 +3926,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::AutoResponseCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0007_postmaster_filter_follow_up_check',
   area:        'Postmaster::PreFilter',
@@ -3718,7 +3935,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::FollowUpCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0008_postmaster_filter_follow_up_merged',
   area:        'Postmaster::PreFilter',
@@ -3727,7 +3944,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::FollowUpMerged',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0009_postmaster_filter_follow_up_assignment',
   area:        'Postmaster::PreFilter',
@@ -3736,7 +3953,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::FollowUpAssignment',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0011_postmaster_sender_based_on_reply_to',
   area:        'Postmaster::PreFilter',
@@ -3745,7 +3962,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::ReplyToBasedSender',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Define postmaster filter.'),
   name:        '0018_postmaster_import_archive',
   area:        'Postmaster::PreFilter',
@@ -3754,7 +3971,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::ImportArchive',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0012_postmaster_filter_sender_is_system_address',
   area:        'Postmaster::PreFilter',
@@ -3763,7 +3980,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::SenderIsSystemAddress',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0014_postmaster_filter_own_notification_loop_detection',
   area:        'Postmaster::PreFilter',
@@ -3772,7 +3989,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::OwnNotificationLoopDetection',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0015_postmaster_filter_identify_sender',
   area:        'Postmaster::PreFilter',
@@ -3781,7 +3998,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::IdentifySender',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0016_postmaster_filter_smime',
   area:        'Postmaster::PreFilter',
@@ -3790,7 +4007,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::SecureMailing',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0030_postmaster_filter_out_of_office_check',
   area:        'Postmaster::PreFilter',
@@ -3799,7 +4016,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::OutOfOfficeCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0200_postmaster_filter_follow_up_possible_check',
   area:        'Postmaster::PreFilter',
@@ -3808,7 +4025,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::FollowUpPossibleCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0900_postmaster_filter_bounce_follow_up_check',
   area:        'Postmaster::PreFilter',
@@ -3817,7 +4034,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::BounceFollowUpCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0950_postmaster_filter_bounce_delivery_permanent_failed',
   area:        'Postmaster::PreFilter',
@@ -3826,7 +4043,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::BounceDeliveryPermanentFailed',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '0955_postmaster_filter_bounce_delivery_temporary_failed',
   area:        'Postmaster::PreFilter',
@@ -3835,7 +4052,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::BounceDeliveryTemporaryFailed',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '1000_postmaster_filter_database_check',
   area:        'Postmaster::PreFilter',
@@ -3844,7 +4061,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::Database',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5000_postmaster_filter_icinga',
   area:        'Postmaster::PreFilter',
@@ -3853,7 +4070,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::Icinga',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5100_postmaster_filter_nagios',
   area:        'Postmaster::PreFilter',
@@ -3862,7 +4079,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::Nagios',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5300_postmaster_filter_monit',
   area:        'Postmaster::PreFilter',
@@ -3871,7 +4088,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::Monit',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5400_postmaster_filter_service_now_check',
   area:        'Postmaster::PreFilter',
@@ -3880,7 +4097,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::ServiceNowCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5401_postmaster_filter_service_now_check',
   area:        'Postmaster::PostFilter',
@@ -3889,7 +4106,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::ServiceNowCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5400_postmaster_filter_jira_check',
   area:        'Postmaster::PreFilter',
@@ -3898,7 +4115,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::JiraCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines postmaster filter.'),
   name:        '5401_postmaster_filter_jira_check',
   area:        'Postmaster::PostFilter',
@@ -3907,7 +4124,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::JiraCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Define postmaster filter.'),
   name:        '5500_postmaster_internal_article_check',
   area:        'Postmaster::PreFilter',
@@ -3916,7 +4133,7 @@ Setting.create_if_not_exists(
   state:       'Channel::Filter::InternalArticleCheck',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Icinga integration'),
   name:        'icinga_integration',
   area:        'Integration::Switch',
@@ -3942,7 +4159,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sender'),
   name:        'icinga_sender',
   area:        'Integration::Icinga',
@@ -3965,7 +4182,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto close'),
   name:        'icinga_auto_close',
   area:        'Integration::Icinga',
@@ -3991,7 +4208,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto-close state'),
   name:        'icinga_auto_close_state_id',
   area:        'Integration::Icinga',
@@ -4014,7 +4231,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Nagios integration'),
   name:        'nagios_integration',
   area:        'Integration::Switch',
@@ -4040,7 +4257,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sender'),
   name:        'nagios_sender',
   area:        'Integration::Nagios',
@@ -4063,7 +4280,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto close'),
   name:        'nagios_auto_close',
   area:        'Integration::Nagios',
@@ -4089,7 +4306,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto-close state'),
   name:        'nagios_auto_close_state_id',
   area:        'Integration::Nagios',
@@ -4112,7 +4329,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Checkmk integration'),
   name:        'check_mk_integration',
   area:        'Integration::Switch',
@@ -4138,7 +4355,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Group'),
   name:        'check_mk_group_id',
   area:        'Integration::CheckMK',
@@ -4161,7 +4378,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto close'),
   name:        'check_mk_auto_close',
   area:        'Integration::CheckMK',
@@ -4187,7 +4404,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto-close state'),
   name:        'check_mk_auto_close_state_id',
   area:        'Integration::CheckMK',
@@ -4210,10 +4427,13 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
-  title:       __('Checkmk token'),
+set8ue8ue = Setting.find_or_create_by!(
   name:        'check_mk_token',
-  area:        'Core',
+  area:        'Core'
+)
+
+set8ue8ue.update!(
+  title:       __('Checkmk token'),
   description: __('Defines the Checkmk token for allowing updates.'),
   options:     {},
   state:       ENV['CHECK_MK_TOKEN'] || SecureRandom.hex(16),
@@ -4222,7 +4442,8 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+
+Setting.find_or_create_by!(
   title:       __('Monit integration'),
   name:        'monit_integration',
   area:        'Integration::Switch',
@@ -4248,7 +4469,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Sender'),
   name:        'monit_sender',
   area:        'Integration::Monit',
@@ -4271,7 +4492,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto close'),
   name:        'monit_auto_close',
   area:        'Integration::Monit',
@@ -4298,7 +4519,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Auto-close state'),
   name:        'monit_auto_close_state_id',
   area:        'Integration::Monit',
@@ -4323,7 +4544,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('LDAP integration'),
   name:        'ldap_integration',
   area:        'Integration::Switch',
@@ -4350,7 +4571,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Exchange config'),
   name:        'exchange_config',
   area:        'Integration::Exchange',
@@ -4363,7 +4584,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Exchange OAuth'),
   name:        'exchange_oauth',
   area:        'Integration::Exchange',
@@ -4376,7 +4597,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Exchange integration'),
   name:        'exchange_integration',
   area:        'Integration::Switch',
@@ -4403,7 +4624,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('i-doit integration'),
   name:        'idoit_integration',
   area:        'Integration::Switch',
@@ -4430,7 +4651,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('i-doit config'),
   name:        'idoit_config',
   area:        'Integration::Idoit',
@@ -4443,7 +4664,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('GitLab integration'),
   name:        'gitlab_integration',
   area:        'Integration::Switch',
@@ -4470,7 +4691,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('GitLab config'),
   name:        'gitlab_config',
   area:        'Integration::GitLab',
@@ -4485,7 +4706,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('GitHub integration'),
   name:        'github_integration',
   area:        'Integration::Switch',
@@ -4512,7 +4733,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('GitHub config'),
   name:        'github_config',
   area:        'Integration::GitHub',
@@ -4527,7 +4748,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines sync transaction backend.'),
   name:        '0100_trigger',
   area:        'Transaction::Backend::Sync',
@@ -4536,7 +4757,7 @@ Setting.create_if_not_exists(
   state:       'Transaction::Trigger',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines transaction backend.'),
   name:        '0100_notification',
   area:        'Transaction::Backend::Async',
@@ -4545,7 +4766,7 @@ Setting.create_if_not_exists(
   state:       'Transaction::Notification',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines transaction backend.'),
   name:        '1000_signature_detection',
   area:        'Transaction::Backend::Async',
@@ -4554,7 +4775,7 @@ Setting.create_if_not_exists(
   state:       'Transaction::SignatureDetection',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines transaction backend.'),
   name:        '6000_slack_webhook',
   area:        'Transaction::Backend::Async',
@@ -4563,7 +4784,7 @@ Setting.create_if_not_exists(
   state:       'Transaction::Slack',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Slack integration'),
   name:        'slack_integration',
   area:        'Integration::Switch',
@@ -4589,7 +4810,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Slack config'),
   name:        'slack_config',
   area:        'Integration::Slack',
@@ -4604,7 +4825,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('sipgate.io integration'),
   name:        'sipgate_integration',
   area:        'Integration::Switch',
@@ -4632,7 +4853,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('sipgate.io Token'),
   name:        'sipgate_token',
   area:        'Integration::Sipgate',
@@ -4653,7 +4874,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('sipgate.io config'),
   name:        'sipgate_config',
   area:        'Integration::Sipgate',
@@ -4666,7 +4887,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('sipgate.io alternative FQDN'),
   name:        'sipgate_alternative_fqdn',
   area:        'Integration::Sipgate::Expert',
@@ -4687,7 +4908,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('CTI integration'),
   name:        'cti_integration',
   area:        'Integration::Switch',
@@ -4715,7 +4936,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('CTI config'),
   name:        'cti_config',
   area:        'Integration::Cti',
@@ -4728,7 +4949,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('CTI Token'),
   name:        'cti_token',
   area:        'Integration::Cti',
@@ -4749,7 +4970,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('CTI customer last activity'),
   name:        'cti_customer_last_activity',
   area:        'Integration::Cti',
@@ -4762,7 +4983,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Placetel integration'),
   name:        'placetel_integration',
   area:        'Integration::Switch',
@@ -4790,7 +5011,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Placetel config'),
   name:        'placetel_config',
   area:        'Integration::Placetel',
@@ -4804,7 +5025,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false,
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Placetel Token'),
   name:        'placetel_token',
   area:        'Integration::Placetel',
@@ -4825,7 +5046,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Clearbit integration'),
   name:        'clearbit_integration',
   area:        'Integration::Switch',
@@ -4851,7 +5072,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Clearbit config'),
   name:        'clearbit_config',
   area:        'Integration::Clearbit',
@@ -4864,7 +5085,7 @@ Setting.create_if_not_exists(
     permission: ['admin.integration'],
   },
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines transaction backend.'),
   name:        '9000_clearbit_enrichment',
   area:        'Transaction::Backend::Async',
@@ -4873,7 +5094,7 @@ Setting.create_if_not_exists(
   state:       'Transaction::ClearbitEnrichment',
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines transaction backend.'),
   name:        '9100_cti_caller_id_detection',
   area:        'Transaction::Backend::Async',
@@ -4883,7 +5104,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Set agent limit'),
   name:        'system_agent_limit',
   area:        'Core::Online',
@@ -4894,7 +5115,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('HTML Email CSS Font'),
   name:        'html_email_css_font',
   area:        'Core',
@@ -4906,7 +5127,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('HTML Sanitizer Processing Timeout'),
   name:        'html_sanitizer_processing_timeout',
   area:        'Core',
@@ -4918,7 +5139,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketWaitingTime'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketWaitingTime',
   area:        'Dashboard::Stats',
@@ -4933,7 +5154,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketEscalation'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketEscalation',
   area:        'Dashboard::Stats',
@@ -4948,7 +5169,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketChannelDistribution'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketChannelDistribution',
   area:        'Dashboard::Stats',
@@ -4963,7 +5184,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketLoadMeasure'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketLoadMeasure',
   area:        'Dashboard::Stats',
@@ -4978,7 +5199,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketInProcess'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketInProcess',
   area:        'Dashboard::Stats',
@@ -4993,7 +5214,7 @@ Setting.create_if_not_exists(
 )
 
 # add the dashboard stats backend for 'Stats::TicketReopen'
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Stats Backend'),
   name:        'Stats::TicketReopen',
   area:        'Dashboard::Stats',
@@ -5007,7 +5228,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Knowledge Base multilingual support'),
   name:        'kb_multi_lingual_support',
   area:        'Kb::Core',
@@ -5018,7 +5239,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Knowledge Base active'),
   name:        'kb_active',
   area:        'Kb::Core',
@@ -5033,7 +5254,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Knowledge Base active publicly'),
   name:        'kb_active_publicly',
   area:        'Kb::Core',
@@ -5048,7 +5269,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Defines the timeframe during which a self-created note can be deleted.'),
   name:        'ui_ticket_zoom_article_delete_timeframe',
   area:        'UI::TicketZoomArticle',
@@ -5061,7 +5282,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Hint for adding an article to an existing ticket.'),
   name:        'ui_ticket_add_article_hint',
   area:        'UI::TicketZoomArticle',
@@ -5080,7 +5301,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('S/MIME integration'),
   name:        'smime_integration',
   area:        'Integration::Switch',
@@ -5108,7 +5329,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('S/MIME config'),
   name:        'smime_config',
   area:        'Integration::SMIME',
@@ -5122,7 +5343,7 @@ Setting.create_if_not_exists(
   frontend:    true,
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Authentication via %s'),
   name:        'auth_sso',
   area:        'Security::ThirdPartyAuthentication',
@@ -5152,7 +5373,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Show calendar weeks in the picker of date/datetime fields'),
   name:        'datepicker_show_calendar_weeks',
   area:        'System::UI',
