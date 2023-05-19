@@ -478,6 +478,8 @@ class CreateBase < ActiveRecord::Migration[4.2]
       t.text :options, null: true
       t.text :state_current,            limit: 200.kilobytes + 1, null: true
       t.string :state_initial,          limit: 2000, null: true
+      #  next field state, is added to avoid error in seeds/setting of no exists column state
+      t.string :state,          limit: 2000, null: true
       t.boolean :frontend,                           null: false
       t.text :preferences,              limit: 200.kilobytes + 1, null: true
       t.timestamps limit: 3, null: false

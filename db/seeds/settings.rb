@@ -2,10 +2,12 @@
 
 puts "seeds -> settings"
 
-Setting.create_if_not_exists(
-  title:       __('Application secret'),
+set_1 = Setting.find_or_create_by!(
   name:        'application_secret',
   area:        'Core',
+)
+set_1.update!(
+  title:       __('Application secret'),
   description: __('Defines the random application secret.'),
   options:     {},
   state:       SecureRandom.hex(128),
@@ -15,30 +17,40 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
-  title:       __('System Init Done'),
+
+set_2 = Setting.find_or_create_by!(
   name:        'system_init_done',
-  area:        'Core',
+  area:        'Core'
+)
+set_2.update!(
+  title:       __('System Init Done'),
   description: __('Defines if application is in init mode.'),
   options:     {},
   state:       false,
   preferences: { online_service_disable: true },
   frontend:    true
 )
-Setting.create_if_not_exists(
-  title:       __('App Version'),
+
+set_3 = Setting.find_or_create_by!(
   name:        'app_version',
-  area:        'Core::WebApp',
+  area:        'Core::WebApp'
+)
+set_3.update!(
+  title:       __('App Version'),
   description: __('Only used internally to propagate current web app version to clients.'),
   options:     {},
   state:       '',
   preferences: { online_service_disable: true },
   frontend:    false
 )
-Setting.find_or_create_by!(
-  title:       __('Maintenance Mode'),
+
+set_4 = Setting.find_or_create_by!(
   name:        'maintenance_mode',
-  area:        'Core::WebApp',
+  area:        'Core::WebApp'
+)
+
+set_4.update!(
+  title:       __('Maintenance Mode'),
   description: __('Enable or disable the maintenance mode of Zammad. If enabled, all non-administrators get logged out and only administrators can start a new session.'),
   options:     {},
   state:       false,
@@ -47,10 +59,14 @@ Setting.find_or_create_by!(
   },
   frontend:    true
 )
-Setting.find_or_create_by!(
-  title:       __('Maintenance Login'),
+
+set_5 = Setting.find_or_create_by!(
   name:        'maintenance_login',
-  area:        'Core::WebApp',
+  area:        'Core::WebApp'
+)
+
+set_5.update!(
+  title:       __('Maintenance Login'),
   description: __('Put a message on the login page. To change it, click on the text area below and change it in-line.'),
   options:     {},
   state:       false,
@@ -59,10 +75,13 @@ Setting.find_or_create_by!(
   },
   frontend:    true
 )
-Setting.find_or_create_by!(
-  title:       __('Maintenance Login'),
+
+set_6 = Setting.find_or_create_by!(
   name:        'maintenance_login_message',
-  area:        'Core::WebApp',
+  area:        'Core::WebApp'
+)
+set_6.update!(
+  title:       __('Maintenance Login'),
   description: __('Message for login page.'),
   options:     {},
   state:       __('This is a default maintenance message. Click here to change.'),
@@ -71,27 +90,38 @@ Setting.find_or_create_by!(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
-  title:       __('Developer System'),
+
+set_7 = Setting.find_or_create_by!(
   name:        'developer_mode',
-  area:        'Core::Develop',
+  area:        'Core::Develop'
+)
+
+set_7.update!(
+  title:       __('Developer System'),
   description: __('Defines if the application is in developer mode (all users have the same password and password reset will work without email delivery).'),
   options:     {},
   state:       Rails.env.development?,
   preferences: { online_service_disable: true },
   frontend:    true
 )
-Setting.create_if_not_exists(
-  title:       __('Online Service'),
+
+set_8 = Setting.find_or_create_by!(
   name:        'system_online_service',
-  area:        'Core',
+  area:        'Core'
+)
+
+set_8.update!(
+  title:       __('Online Service'),
   description: __('Defines if application is used as online service.'),
   options:     {},
   state:       false,
   preferences: { online_service_disable: true },
   frontend:    true
 )
-Setting.create_if_not_exists(
+
+puts "seeds -> settings iiiiii"
+
+set_9 = Setting.find_or_create_by!(
   title:       __('Product Name'),
   name:        'product_name',
   area:        'System::Branding',
@@ -115,7 +145,7 @@ Setting.create_if_not_exists(
   state:       __('Zammad Helpdesk'),
   frontend:    true
 )
-Setting.create_if_not_exists(
+set_10 = Setting.find_or_create_by!(
   title:       __('Logo'),
   name:        'product_logo',
   area:        'System::Branding',
@@ -138,7 +168,7 @@ Setting.create_if_not_exists(
   state:       'logo.svg',
   frontend:    true
 )
-Setting.create_if_not_exists(
+set_11 = Setting.find_or_create_by!(
   title:       __('Organization'),
   name:        'organization',
   area:        'System::Branding',
@@ -161,7 +191,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+set_12 = Setting.find_or_create_by!(
   title:       __('Locale'),
   name:        'locale_default',
   area:        'System::Branding',
@@ -181,7 +211,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+set_13 = Setting.find_or_create_by!(
   title:       __('Timezone'),
   name:        'timezone_default',
   area:        'System::Branding',
@@ -201,7 +231,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_or_update(
+set_14 = Setting.create_or_update(
   title:       __('Pretty Date'),
   name:        'pretty_date_format',
   area:        'System::Branding',
@@ -235,7 +265,7 @@ options = {}
   options[item] = item
 end
 system_id = rand(10..99) # rubocop:disable Zammad/ForbidRand
-Setting.create_if_not_exists(
+set_15 = Setting.create_if_not_exists(
   title:       __('SystemID'),
   name:        'system_id',
   area:        'System::Base',
@@ -260,7 +290,8 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+puts "ddddddddddddddddddddddddddddd"
+set_16 = Setting.find_or_create_by!(
   title:       __('Fully Qualified Domain Name'),
   name:        'fqdn',
   area:        'System::Base',
@@ -283,7 +314,7 @@ Setting.create_if_not_exists(
   },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Websocket backend'),
   name:        'websocket_backend',
   area:        'System::WebSocket',
@@ -291,7 +322,7 @@ Setting.create_if_not_exists(
   state:       Rails.env.production? ? 'websocket' : 'websocketPort',
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Websocket port'),
   name:        'websocket_port',
   area:        'System::WebSocket',
@@ -310,7 +341,7 @@ Setting.create_if_not_exists(
   preferences: { online_service_disable: true },
   frontend:    true
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('HTTP type'),
   name:        'http_type',
   area:        'System::Base',
@@ -338,7 +369,7 @@ Setting.create_if_not_exists(
   frontend:    true
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Storage Mechanism'),
   name:        'storage_provider',
   area:        'System::Storage',
@@ -368,7 +399,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Image Service'),
   name:        'image_backend',
   area:        'System::Services',
@@ -395,7 +426,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Geo IP Service'),
   name:        'geo_ip_backend',
   area:        'System::Services',
@@ -422,7 +453,7 @@ Setting.create_if_not_exists(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Geo Location Service'),
   name:        'geo_location_backend',
   area:        'System::Services',
@@ -476,7 +507,7 @@ Setting.find_or_create_by!(
   frontend:    false
 )
 
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Proxy Settings'),
   name:        'proxy',
   area:        'System::Network',
@@ -501,7 +532,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Proxy User'),
   name:        'proxy_username',
   area:        'System::Network',
@@ -525,7 +556,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('Proxy Password'),
   name:        'proxy_password',
   area:        'System::Network',
@@ -549,7 +580,7 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
-Setting.create_if_not_exists(
+Setting.find_or_create_by!(
   title:       __('No Proxy'),
   name:        'proxy_no',
   area:        'System::Network',

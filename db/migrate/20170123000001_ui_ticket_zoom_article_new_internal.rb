@@ -6,7 +6,7 @@ class UiTicketZoomArticleNewInternal < ActiveRecord::Migration[4.2]
     # return if it's a new setup
     return if !Setting.exists?(name: 'system_init_done')
 
-    Setting.create_if_not_exists(
+    Setting.find_or_create_by!(
       title:       'Define default visibility of new a new article',
       name:        'ui_ticket_zoom_article_new_internal',
       area:        'UI::TicketZoom',

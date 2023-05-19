@@ -31,6 +31,6 @@ end
   def push_collection_to_clients
     return if Setting.get('import_mode')
 
-    CollectionUpdateJob.set(wait: 10.seconds).perform_now(self.class.name, Tenant.current_tenant_subdomain)
+    CollectionUpdateJob.set(wait: 10.seconds).perform_later(self.class.name, Tenant.current_tenant_subdomain)
   end
 end

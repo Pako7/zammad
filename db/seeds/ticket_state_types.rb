@@ -2,10 +2,12 @@
 
 puts "seeds -> ticket_state_types"
 
-Ticket::StateType.find_or_create_by!(name: __('new'))
-Ticket::StateType.find_or_create_by!(name: __('open'))
-Ticket::StateType.find_or_create_by!(name: __('pending reminder'))
-Ticket::StateType.find_or_create_by!(name: __('pending action'))
-Ticket::StateType.find_or_create_by!(name: __('closed'))
-Ticket::StateType.find_or_create_by!(name: __('merged'))
-Ticket::StateType.find_or_create_by!(name: __('removed'))
+user = User.first
+
+Ticket::StateType.find_or_create_by!(name: __('new'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('open'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('pending reminder'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('pending action'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('closed'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('merged'), created_at: user, updated_at: user)
+Ticket::StateType.find_or_create_by!(name: __('removed'), created_at: user, updated_at: user)

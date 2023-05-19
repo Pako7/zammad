@@ -5,7 +5,7 @@ class ValidateAgentLimit < ActiveRecord::Migration[4.2]
     # return if it's a new setup
     return if !Setting.exists?(name: 'system_init_done')
 
-    Setting.create_if_not_exists(
+    Setting.find_or_create_by!(
       title:       'Set limit of agents',
       name:        'system_agent_limit',
       area:        'Core::Online',

@@ -11,7 +11,7 @@
 # clear old caches to start from scratch
 Rails.cache.clear
 
-Tenant.set_current_tenant('h2')
+Tenant.set_current_tenant('h1')
 # bundle exec rake db:drop ; bundle exec rake db:create ; bundle exec rake db:migrate ; bundle exec rake db:seed ;
 
 # this is the __ordered__ list of seed files
@@ -46,7 +46,7 @@ end
 DbHelper.import_post
 
 # install locales and translations
-Locale.create_if_not_exists(
+Locale.find_or_create_by!(
   locale: 'es-mx',
   alias:  '',
   name:   __('Español (México)'),

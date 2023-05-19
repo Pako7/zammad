@@ -67,7 +67,7 @@ class LdapSupport < ActiveRecord::Migration[4.2]
       },
       frontend:    true
     )
-    Setting.create_if_not_exists(
+    Setting.find_or_create_by!(
       title:       'LDAP config',
       name:        'ldap_config',
       area:        'Integration::LDAP',

@@ -6,7 +6,7 @@ class UnableToEnableTimeAccounting633 < ActiveRecord::Migration[4.2]
     # return if it's a new setup
     return if !Setting.exists?(name: 'system_init_done')
 
-    Setting.create_if_not_exists(
+    Setting.find_or_create_by!(
       title:       'Time Accounting',
       name:        'time_accounting',
       area:        'Web::Base',
