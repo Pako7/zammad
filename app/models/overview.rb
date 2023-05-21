@@ -1,7 +1,9 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Overview < ApplicationModel
+
   include AsMultitenant
+=begin
   include HasDefaultModelUserRelations
 
   include ChecksClientNotification
@@ -11,7 +13,7 @@ class Overview < ApplicationModel
 
   include Overview::Assets
   include Overview::TriggersSubscriptions
-
+=end
   has_and_belongs_to_many :roles, after_add: :cache_update, after_remove: :cache_update, class_name: 'Role'
   has_and_belongs_to_many :users, after_add: :cache_update, after_remove: :cache_update, class_name: 'User'
   store     :condition
@@ -22,6 +24,17 @@ class Overview < ApplicationModel
 
   before_create :fill_link_on_create
   before_update :fill_link_on_update
+
+  def self.custom_find_or_create!(attrs = {})
+    record = find_or_initialize_by({
+      link: attrs[:link]
+    })
+
+    record.update!(attrs)
+  rescue StandardError => e
+    puts "Error, link: #{attrs[:link]}"
+    raise e
+  end
 
   private
 

@@ -1,6 +1,6 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-puts "seeds -> community_user_resources"
+puts "seeds -> object_manager_attributes"
 
 ObjectManager::Attribute.add(
   force:       true,

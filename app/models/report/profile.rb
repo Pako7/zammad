@@ -1,8 +1,8 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Report::Profile < ApplicationModel
-  include AsMultitenant
   self.table_name = 'report_profiles'
+  include AsMultitenant
   include ChecksConditionValidation
   validates :name, presence: true
   store     :condition

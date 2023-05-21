@@ -40,7 +40,7 @@ CoreWorkflow.find_or_create_by!(
   created_by_id:   1,
   updated_by_id:   1,
 )
-CoreWorkflow.create_if_not_exists(
+CoreWorkflow.find_or_create_by!(
   name:            'base - admin sla options',
   object:          'Sla',
   condition_saved: {
@@ -60,7 +60,7 @@ CoreWorkflow.create_if_not_exists(
   created_by_id:   User.first.id,
   updated_by_id:   User.first.id,
 )
-CoreWorkflow.create_if_not_exists(
+CoreWorkflow.find_or_create_by!(
   name:            'base - core workflow',
   object:          'CoreWorkflow',
   condition_saved: {

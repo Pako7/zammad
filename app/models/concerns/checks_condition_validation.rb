@@ -9,6 +9,7 @@ module ChecksConditionValidation
   end
 
   def validate_condition
-    raise Exceptions::UnprocessableEntity, __('Invalid ticket selector conditions') if !Ticket::Selector::Sql.new(selector: condition, options: { current_user: User.find(1) }).valid?
+    # pako, changed fromt User.find(1) to User.first, but not sure
+    raise Exceptions::UnprocessableEntity, __('Invalid ticket selector conditions') if !Ticket::Selector::Sql.new(selector: condition, options: { current_user: User.first }).valid?
   end
 end

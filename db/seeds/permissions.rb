@@ -2,305 +2,310 @@
 
 puts "seeds -> permissions"
 
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin',
   note:        __('Admin Interface'),
   preferences: {},
 )
-Permission.find_or_create_by!(
+
+Permission.custom_find_or_create!(
   name:        'admin.user',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Users')]
   },
 )
-Permission.find_or_create_by!(
+
+Permission.custom_find_or_create!(
   name:        'admin.group',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Groups')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.role',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Roles')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.organization',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Organizations')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.overview',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Overviews')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.text_module',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Text Modules')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.time_accounting',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Time Accounting')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.macro',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Macros')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.tag',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Tags')]
   },
 )
-Permission.create_if_not_exists(
+
+Permission.custom_find_or_create!(
   name:        'admin.calendar',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Calendar')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.sla',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('SLA')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.trigger',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Triggers')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.scheduler',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Scheduler')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.report_profile',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Report Profiles')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.channel_web',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Web')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.channel_formular',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Form')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_email',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Email')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_twitter',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Twitter')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_facebook',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Facebook')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_telegram',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Telegram')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_google',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Google')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_microsoft365',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Microsoft 365')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_sms',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - SMS')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.channel_chat',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Channel - Chat')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.branding',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Branding')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.setting_system',
   note:        __('Manage %s Settings'),
   preferences: {
     translations: [__('System')]
   },
 )
-Permission.create_if_not_exists(
+
+Permission.custom_find_or_create!(
   name:        'admin.security',
   note:        __('Manage %s Settings'),
   preferences: {
     translations: [__('Security')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.ticket',
   note:        __('Manage %s Settings'),
   preferences: {
     translations: [__('Ticket')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.package',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Packages')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.integration',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Integrations')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.api',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('API')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.object',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Objects')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.template',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Templates')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.translation',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Translations')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.monitoring',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Monitoring')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.data_privacy',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Data Privacy')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.maintenance',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Maintenance')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.session',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Sessions')]
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'admin.webhook',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Webhooks')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.core_workflow',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Core Workflow')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.public_links',
   note:        __('Manage %s'),
   preferences: {
     translations: [__('Public Links')]
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:         'user_preferences',
   note:         __('User Preferences'),
   preferences:  {},
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+
+Permission.custom_find_or_create!(
   name:         'user_preferences.password',
   note:         __('Change %s'),
   preferences:  {
@@ -308,7 +313,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.notifications',
   note:         __('Manage %s'),
   preferences:  {
@@ -317,7 +322,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.access_token',
   note:         __('Manage %s'),
   preferences:  {
@@ -325,7 +330,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.language',
   note:         __('Change %s'),
   preferences:  {
@@ -333,7 +338,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.linked_accounts',
   note:         __('Manage %s'),
   preferences:  {
@@ -341,7 +346,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.device',
   note:         __('Manage %s'),
   preferences:  {
@@ -349,7 +354,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.avatar',
   note:         __('Manage %s'),
   preferences:  {
@@ -357,7 +362,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.calendar',
   note:         __('Access to %s'),
   preferences:  {
@@ -366,7 +371,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.out_of_office',
   note:         __('Change %s'),
   preferences:  {
@@ -375,7 +380,7 @@ Permission.create_if_not_exists(
   },
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.overview_sorting',
   note:         __('Change %s'),
   preferences:  {
@@ -385,7 +390,7 @@ Permission.create_if_not_exists(
   allow_signup: true,
 )
 
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'user_preferences.appearance',
   note:         __('Manage %s'),
   preferences:  {
@@ -394,32 +399,32 @@ Permission.create_if_not_exists(
   allow_signup: true,
 )
 
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'report',
   note:        __('Report Interface'),
   preferences: {},
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'ticket',
   note:        __('Ticket Interface'),
   preferences: {
     disabled: true
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'ticket.agent',
   note:        __('Access to Agent Tickets based on Group Access'),
   preferences: {
     plugin: ['groups']
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'ticket.customer',
   note:         __('Access to Customer Tickets based on current_user and organization'),
   preferences:  {},
   allow_signup: true,
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'chat',
   note:        __('Access to %s'),
   preferences: {
@@ -427,21 +432,21 @@ Permission.create_if_not_exists(
     disabled:     true,
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'chat.agent',
   note:        __('Access to %s'),
   preferences: {
     translations: [__('Chat')],
   },
 )
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'cti',
   note:        __('CTI'),
   preferences: {
     disabled: true
   },
 )
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'cti.agent',
   note:        __('Access to %s'),
   preferences: {
@@ -449,7 +454,7 @@ Permission.find_or_create_by!(
   },
 )
 
-Permission.find_or_create_by!(
+Permission.custom_find_or_create!(
   name:        'admin.knowledge_base',
   note:        __('Create and set up %s'),
   preferences: {
@@ -457,7 +462,7 @@ Permission.find_or_create_by!(
   }
 )
 
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'knowledge_base',
   note:        __('Manage %s'),
   preferences: {
@@ -466,7 +471,7 @@ Permission.create_if_not_exists(
   }
 )
 
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:        'knowledge_base.editor',
   note:        __('Manage %s'),
   preferences: {
@@ -474,7 +479,7 @@ Permission.create_if_not_exists(
   }
 )
 
-Permission.create_if_not_exists(
+Permission.custom_find_or_create!(
   name:         'knowledge_base.reader',
   note:         __('Manage %s'),
   preferences:  {

@@ -2,8 +2,13 @@
 
 puts "seeds -> community_user_resources"
 
-org_community = Organization.find_or_create_by!(
+user_id = User.first.id
+
+org_community = Organization.find_or_initialize_by(
   name: __('Zammad Foundation')
+).update!(
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
 # pako, commented first ticket

@@ -78,7 +78,8 @@ class Transaction::Slack
       raise "unknown type for notification #{@item[:type]}"
     end
 
-    user = User.find(1)
+    # pako, changed fromt User.find(1) to User.first, but not sure
+    user = User.first
 
     current_user = User.lookup(id: @item[:user_id])
     if !current_user
@@ -205,7 +206,8 @@ class Transaction::Slack
 
     return {} if !@item[:changes]
 
-    user = User.find(1)
+    # pako, changed fromt User.find(1) to User.first, but not sure
+    user = User.first
     locale = user.preferences[:locale] || Setting.get('locale_default') || 'en-us'
 
     # only show allowed attributes

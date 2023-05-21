@@ -1,7 +1,10 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-Signature.create_if_not_exists(
+puts "seeds -> signatures"
+
+Signature.find_or_initialize_by(
   name:          __('default'),
+).update!(
   body:          '
   #{user.firstname} #{user.lastname}
 

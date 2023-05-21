@@ -33,6 +33,29 @@ set config setting
 
 =end
 
+  def self.custom_find_or_create!(attrs = {})
+    record = find_or_initialize_by({
+      name: attrs[:name],
+      area: attrs[:area],
+    })
+
+    record.update!(
+      attrs
+=begin      {
+        title: attrs[:title],
+        description: attrs[:description],
+        options: attrs[:options],
+        state: attrs[:state],
+        preferences: attrs[:preferences],
+        frontend: attrs[:frontend],
+      }
+=end
+    )
+  rescue StandardError => e
+    puts "Error, name: #{attrs[:name]}, area: #{attrs[:area]}"
+    raise e
+  end
+
   def self.set(name, value)
     setting = Setting.find_by(name: name)
     if !setting

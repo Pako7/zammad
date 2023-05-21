@@ -63,7 +63,8 @@ returns
 
     auto_wizard_hash = data
 
-    admin_user = User.find(1)
+    # pako, changed fromt User.find(1) to User.first, but not sure
+    admin_user = User.first
 
     UserInfo.current_user_id = admin_user.id
 

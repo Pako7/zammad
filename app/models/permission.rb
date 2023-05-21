@@ -23,6 +23,17 @@ returns
 
 =end
 
+  def self.custom_find_or_create!(attrs = {})
+    record = find_or_initialize_by({
+      name: attrs[:name],
+    })
+
+    record.update!(attrs)
+  rescue StandardError => e
+    puts "Error, name: #{attrs[:name]}, note: #{attrs[:note]}"
+    raise e
+  end
+
   def self.with_parents(key)
     names = []
     part = ''

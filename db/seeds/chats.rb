@@ -2,7 +2,7 @@
 
 puts "seeds -> chats"
 
-Chat.create_if_not_exists(
+Chat.find_or_create_by!(
   name:          'default',
   max_queue:     5,
   note:          '',

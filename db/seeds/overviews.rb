@@ -2,9 +2,11 @@
 
 puts "seeds -> overviews"
 
+user_id = User.first.id
+
 overview_role = Role.find_by(name: 'Agent')
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('My Assigned Tickets'),
   link:      'my_assigned',
   prio:      1000,
@@ -29,9 +31,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('Unassigned & Open Tickets'),
   link:      'all_unassigned',
   prio:      1010,
@@ -56,9 +60,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('My Pending Reached Tickets'),
   link:      'my_pending_reached',
   prio:      1020,
@@ -88,9 +94,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('My Subscribed Tickets'),
   link:      'my_subscribed_tickets',
   prio:      1025,
@@ -106,9 +114,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('Open Tickets'),
   link:      'all_open',
   prio:      1030,
@@ -129,9 +139,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group state owner created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
-
-Overview.find_or_create_by!(
+puts "hhhhhhhhhhh"
+Overview.custom_find_or_create!(
   name:      __('Pending Reached Tickets'),
   link:      'all_pending_reached',
   prio:      1040,
@@ -157,9 +169,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group owner created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('Escalated Tickets'),
   link:      'all_escalated',
   prio:      1050,
@@ -181,9 +195,11 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group owner escalation_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:          __('My Replacement Tickets'),
   link:          'my_replacement_tickets',
   prio:          1080,
@@ -209,10 +225,12 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer group owner escalation_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
 
 overview_role = Role.find_by(name: 'Customer')
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:      __('My Tickets'),
   link:      'my_tickets',
   prio:      1100,
@@ -237,8 +255,10 @@ Overview.find_or_create_by!(
     m:                 %w[number title state created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
-Overview.find_or_create_by!(
+Overview.custom_find_or_create!(
   name:                __('My Organization Tickets'),
   link:                'my_organization_tickets',
   prio:                1200,
@@ -264,4 +284,6 @@ Overview.find_or_create_by!(
     m:                 %w[number title customer organization state created_at],
     view_mode_default: 's',
   },
+  created_by_id: user_id,
+  updated_by_id: user_id
 )
