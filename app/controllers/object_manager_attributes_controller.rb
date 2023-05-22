@@ -132,6 +132,7 @@ class ObjectManagerAttributesController < ApplicationController
     attributes = given_params.slice(:object, :name, :display, :data_type, :data_option, :active, :screens, :position)
     attributes[:editable] = true
 
+     # pako check if this send the created_by and updated_by
     object_manager_attribute = ObjectManager::Attribute.add(attributes)
 
     render json: object_manager_attribute.attributes_with_association_ids, status: status

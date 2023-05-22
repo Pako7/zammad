@@ -142,7 +142,7 @@ Overview.custom_find_or_create!(
   created_by_id: user_id,
   updated_by_id: user_id
 )
-puts "hhhhhhhhhhh"
+
 Overview.custom_find_or_create!(
   name:      __('Pending Reached Tickets'),
   link:      'all_pending_reached',

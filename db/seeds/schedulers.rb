@@ -8,6 +8,8 @@ Scheduler.find_or_create_by!(
   period: 15.minutes,
   prio:   1,
   active: true,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.find_or_create_by!(
   name:   __('Process ticket escalations.'),
@@ -15,6 +17,8 @@ Scheduler.find_or_create_by!(
   period: 5.minutes,
   prio:   1,
   active: true,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.find_or_create_by!(
   name:   __('Process automatic ticket unassignments.'),
@@ -22,6 +26,8 @@ Scheduler.find_or_create_by!(
   period: 10.minutes,
   prio:   1,
   active: true,
+  updated_by_id: User.first.id,
+  created_by_id: User.first.id,
 )
 Scheduler.find_or_create_by!(
   name:          __('Check channels.'),

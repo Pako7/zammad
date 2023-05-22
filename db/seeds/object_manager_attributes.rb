@@ -2,7 +2,7 @@
 
 puts "seeds -> object_manager_attributes"
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'number',
@@ -27,7 +27,7 @@ ObjectManager::Attribute.add(
   position:    5,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'title',
@@ -55,7 +55,7 @@ ObjectManager::Attribute.add(
   position:    8,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'customer_id',
@@ -89,7 +89,7 @@ ObjectManager::Attribute.add(
   position:    10,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'organization_id',
@@ -119,7 +119,7 @@ ObjectManager::Attribute.add(
   position:    12,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'type',
@@ -157,7 +157,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    20,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'group_id',
@@ -194,7 +194,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    25,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'owner_id',
@@ -230,7 +230,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    30,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'state_id',
@@ -281,7 +281,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    40,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'pending_time',
@@ -315,7 +315,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    41,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'priority_id',
@@ -350,7 +350,7 @@ ObjectManager::Attribute.add(
   position:    80,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Ticket',
   name:        'tags',
@@ -377,7 +377,7 @@ ObjectManager::Attribute.add(
   position:    900,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'TicketArticle',
   name:        'type_id',
@@ -407,7 +407,7 @@ ObjectManager::Attribute.add(
   position:    100,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'TicketArticle',
   name:        'internal',
@@ -440,7 +440,7 @@ ObjectManager::Attribute.add(
   position:    200,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'TicketArticle',
   name:        'to',
@@ -466,7 +466,7 @@ ObjectManager::Attribute.add(
   to_delete:   false,
   position:    300,
 )
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'TicketArticle',
   name:        'cc',
@@ -494,7 +494,7 @@ ObjectManager::Attribute.add(
   position:    400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'TicketArticle',
   name:        'body',
@@ -527,7 +527,7 @@ ObjectManager::Attribute.add(
   position:    600,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'login',
@@ -559,7 +559,7 @@ ObjectManager::Attribute.add(
   position:    100,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'firstname',
@@ -611,7 +611,7 @@ ObjectManager::Attribute.add(
   position:    200,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'lastname',
@@ -663,7 +663,7 @@ ObjectManager::Attribute.add(
   position:    300,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'email',
@@ -715,7 +715,7 @@ ObjectManager::Attribute.add(
   position:    400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'web',
@@ -755,7 +755,7 @@ ObjectManager::Attribute.add(
   position:    500,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'phone',
@@ -795,7 +795,7 @@ ObjectManager::Attribute.add(
   position:    600,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'mobile',
@@ -835,7 +835,7 @@ ObjectManager::Attribute.add(
   position:    700,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'fax',
@@ -875,7 +875,7 @@ ObjectManager::Attribute.add(
   position:    800,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'organization_id',
@@ -920,7 +920,7 @@ ObjectManager::Attribute.add(
   position:    900,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'organization_ids',
@@ -967,7 +967,7 @@ ObjectManager::Attribute.add(
   position:    901,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'department',
@@ -1007,7 +1007,7 @@ ObjectManager::Attribute.add(
   position:    1000,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'street',
@@ -1046,7 +1046,7 @@ ObjectManager::Attribute.add(
   position:    1100,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'zip',
@@ -1086,7 +1086,7 @@ ObjectManager::Attribute.add(
   position:    1200,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'city',
@@ -1126,7 +1126,7 @@ ObjectManager::Attribute.add(
   position:    1300,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'country',
@@ -1166,7 +1166,7 @@ ObjectManager::Attribute.add(
   position:    1325,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'address',
@@ -1207,7 +1207,7 @@ ObjectManager::Attribute.add(
   position:    1350,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'password',
@@ -1251,7 +1251,7 @@ ObjectManager::Attribute.add(
   position:    1400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'vip',
@@ -1293,7 +1293,7 @@ ObjectManager::Attribute.add(
   position:    1490,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'note',
@@ -1338,7 +1338,7 @@ ObjectManager::Attribute.add(
   position:    1500,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'role_ids',
@@ -1382,7 +1382,7 @@ ObjectManager::Attribute.add(
   position:    1600,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'User',
   name:        'active',
@@ -1421,7 +1421,7 @@ ObjectManager::Attribute.add(
   position:    1800,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'name',
@@ -1461,7 +1461,7 @@ ObjectManager::Attribute.add(
   position:    200,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'shared',
@@ -1507,7 +1507,7 @@ ObjectManager::Attribute.add(
   position:    1400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'domain_assignment',
@@ -1553,7 +1553,7 @@ ObjectManager::Attribute.add(
   position:    1410,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'domain',
@@ -1593,7 +1593,7 @@ ObjectManager::Attribute.add(
   position:    1420,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'note',
@@ -1634,7 +1634,7 @@ ObjectManager::Attribute.add(
   position:    1500,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Organization',
   name:        'active',
@@ -1673,7 +1673,7 @@ ObjectManager::Attribute.add(
   position:    1800,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'name',
@@ -1709,7 +1709,7 @@ ObjectManager::Attribute.add(
   position:    200,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'assignment_timeout',
@@ -1742,7 +1742,7 @@ ObjectManager::Attribute.add(
   position:    300,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'follow_up_possible',
@@ -1779,7 +1779,7 @@ ObjectManager::Attribute.add(
   position:    400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:         true,
   object:        'Group',
   name:          'reopen_time_in_days',
@@ -1796,7 +1796,7 @@ ObjectManager::Attribute.add(
   editable:      false,
   active:        true,
   screens:       {
-    create: { 'admin.group': { shown: false, required: false } },
+    create: { 'admin.groupobject_manager_attributes': { shown: false, required: false } },
     edit:   { 'admin.group': { shown: false, required: false } },
     view:   { 'admin.group': { shown: false } }
   },
@@ -1808,7 +1808,7 @@ ObjectManager::Attribute.add(
   updated_by_id: 1,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'follow_up_assignment',
@@ -1844,7 +1844,7 @@ ObjectManager::Attribute.add(
   position:    500,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'email_address_id',
@@ -1878,7 +1878,7 @@ ObjectManager::Attribute.add(
   position:    600,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'signature_id',
@@ -1912,7 +1912,7 @@ ObjectManager::Attribute.add(
   position:    600,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'shared_drafts',
@@ -1948,7 +1948,7 @@ ObjectManager::Attribute.add(
   position:    1400,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'note',
@@ -1986,7 +1986,7 @@ ObjectManager::Attribute.add(
   position:    1500,
 )
 
-ObjectManager::Attribute.add(
+ObjectManager::Attribute.seed_custom_add(
   force:       true,
   object:      'Group',
   name:        'active',

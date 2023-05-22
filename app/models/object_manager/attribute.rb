@@ -311,6 +311,15 @@ possible types
 
 =end
 
+  def self.seed_custom_add(attrs={})
+    user_id = User.first.id
+
+    add(attrs.merge(
+      created_by_id: user_id,
+      updated_by_id: user_id
+    ))
+  end
+
   def self.add(data)
     force = data[:force]
     data.delete(:force)

@@ -11,14 +11,16 @@
 # clear old caches to start from scratch
 Rails.cache.clear
 
-Tenant.set_current_tenant('h4')
+Tenant.set_current_tenant('h1')
 # bundle exec rake db:drop ; bundle exec rake db:create ; bundle exec rake db:migrate ; bundle exec rake db:seed ;
 
 # this is the __ordered__ list of seed files
 # extend only if needed - try to add your changes
 # to the matching one of the existing files
 seeds = %w[
-  report_profiles 
+  user_nr_1 settings signatures roles permissions groups 
+  links ticket_state_types ticket_states ticket_priorities ticket_article_types 
+  ticket_article_senders macros community_user_resources overviews channels report_profiles 
   chats object_manager_attributes schedulers triggers core_workflow
 ]
 
