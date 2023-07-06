@@ -2,7 +2,7 @@
 
 puts "seeds -> schedulers"
 
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:   __('Process pending tickets.'),
   method: 'Ticket.process_pending',
   period: 15.minutes,
@@ -11,7 +11,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:   __('Process ticket escalations.'),
   method: 'Ticket.process_escalation',
   period: 5.minutes,
@@ -20,7 +20,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:   __('Process automatic ticket unassignments.'),
   method: 'Ticket.process_auto_unassign',
   period: 10.minutes,
@@ -29,7 +29,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Check channels.'),
   method:        'Channel.fetch',
   period:        30.seconds,
@@ -38,7 +38,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __("Check 'Channel' streams."),
   method:        'Channel.stream',
   period:        60.seconds,
@@ -47,7 +47,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __("Generate 'Session' data."),
   method:        'Sessions.jobs',
   period:        60.seconds,
@@ -56,7 +56,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Execute planned jobs.'),
   method:        'Job.run',
   period:        5.minutes,
@@ -65,7 +65,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Clean up expired sessions.'),
   method:        'SessionHelper.cleanup_expired',
   period:        60 * 60 * 12,
@@ -74,7 +74,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Delete old activity stream entries.'),
   method:        'ActivityStream.cleanup',
   period:        1.day,
@@ -83,7 +83,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __("Delete old 'RecentView' entries."),
   method:        'RecentView.cleanup',
   period:        1.day,
@@ -155,6 +155,7 @@ Scheduler.create_or_update(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
+
 Scheduler.create_or_update(
   name:          __('Generate user-based stats.'),
   method:        'Stats.generate',
@@ -164,6 +165,7 @@ Scheduler.create_or_update(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
+
 Scheduler.create_or_update(
   name:          __('Delete old stats store entries.'),
   method:        'StatsStore.cleanup',
@@ -173,7 +175,7 @@ Scheduler.create_or_update(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __("Clean up 'HttpLog'."),
   method:        'HttpLog.cleanup',
   period:        1.day,
@@ -182,7 +184,8 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+
+Scheduler.custom_find_or_create!(
   name:          __("Clean up 'Cti::Log'."),
   method:        'Cti::Log.cleanup',
   period:        1.month,
@@ -191,7 +194,8 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+
+Scheduler.custom_find_or_create!(
   name:          __("Clean up 'DataPrivacyTask'."),
   method:        'DataPrivacyTask.cleanup',
   period:        1.day,
@@ -209,7 +213,8 @@ Scheduler.create_or_update(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+
+Scheduler.custom_find_or_create!(
   name:          __('Execute import jobs.'),
   method:        'ImportJob.start_registered',
   period:        1.hour,
@@ -218,7 +223,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Handle data privacy tasks.'),
   method:        'DataPrivacyTaskJob.perform_now',
   period:        10.minutes,
@@ -228,7 +233,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Delete old upload cache entries.'),
   method:        'UploadCacheCleanupJob.perform_now',
   period:        1.month,
@@ -237,7 +242,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Clean up cache.'),
   method:        'CacheClearJob.perform_now',
   period:        10.minutes,
@@ -263,7 +268,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Update exchange oauth 2 token.'),
   method:        'ExternalCredential::Exchange.refresh_token',
   period:        10.minutes,
@@ -272,7 +277,7 @@ Scheduler.find_or_create_by!(
   updated_by_id: User.first.id,
   created_by_id: User.first.id,
 )
-Scheduler.find_or_create_by!(
+Scheduler.custom_find_or_create!(
   name:          __('Clean up mobile taskbars.'),
   method:        'TaskbarCleanupJob.perform_now',
   period:        10.minutes,

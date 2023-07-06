@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
+puts "seeds -> triggers"
+
 Trigger.create_or_update(
   name:          'auto reply (on new tickets)',
   condition:     {

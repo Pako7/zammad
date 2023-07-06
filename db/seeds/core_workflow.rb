@@ -1,6 +1,8 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
-CoreWorkflow.find_or_create_by!(
+puts "seeds -> core_workflow"
+
+CoreWorkflow.custom_find_or_create!(
   name:            'base - hide pending time on non pending states',
   object:          'Ticket',
   condition_saved: {
@@ -20,7 +22,7 @@ CoreWorkflow.find_or_create_by!(
   created_by_id:   1,
   updated_by_id:   1,
 )
-CoreWorkflow.find_or_create_by!(
+CoreWorkflow.custom_find_or_create!(
   name:            'base - show secondary organization based on user',
   object:          'Ticket',
   condition_saved: {
@@ -40,7 +42,7 @@ CoreWorkflow.find_or_create_by!(
   created_by_id:   1,
   updated_by_id:   1,
 )
-CoreWorkflow.find_or_create_by!(
+CoreWorkflow.custom_find_or_create!(
   name:            'base - admin sla options',
   object:          'Sla',
   condition_saved: {
@@ -60,7 +62,7 @@ CoreWorkflow.find_or_create_by!(
   created_by_id:   User.first.id,
   updated_by_id:   User.first.id,
 )
-CoreWorkflow.find_or_create_by!(
+CoreWorkflow.custom_find_or_create!(
   name:            'base - core workflow',
   object:          'CoreWorkflow',
   condition_saved: {
@@ -80,7 +82,7 @@ CoreWorkflow.find_or_create_by!(
   created_by_id:   User.first.id,
   updated_by_id:   User.first.id
 )
-CoreWorkflow.find_or_create_by!(
+CoreWorkflow.custom_find_or_create!(
   name:               'base - show reopen_time_in_days',
   object:             'Group',
   condition_saved:    {},
