@@ -17,6 +17,18 @@ class CoreWorkflow < ApplicationModel
 
   validates :name, presence: true
 
+  def self.custom_find_or_create!(attrs = {})
+    record = find_or_initialize_by({
+      name: attrs[:name],
+      object: attrs[:object]
+    })
+
+    record.update!(attrs)
+  rescue StandardError => e
+    puts "Error, name: #{attrs[:name]}"
+    raise e
+  end
+
   def self.perform(payload:, user:, assets: {}, assets_in_result: true, result: {}, form_updater: false)
     CoreWorkflow::Result.new(payload: payload, user: user, assets: assets, assets_in_result: assets_in_result, result: result, form_updater: form_updater).run
   rescue => e

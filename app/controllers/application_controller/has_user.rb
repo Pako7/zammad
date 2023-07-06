@@ -64,7 +64,7 @@ module ApplicationController::HasUser
   # Sets the current user into a named Thread location so that it can be accessed
   # by models and observers
   def set_user
-    UserInfo.current_user_id = current_user&.id || 1
+    UserInfo.current_user_id = current_user&.id || User.first.id
   end
 
   # update session updated_at

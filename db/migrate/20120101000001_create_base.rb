@@ -7,7 +7,9 @@ class CreateBase < ActiveRecord::Migration[4.2]
     Rails.cache.clear
 
     create_table :sessions do |t|
-      t.belongs_to :tenant, index: true, null: false
+# IMPORTANT!!! *****************************************
+# For multitenant, if sessions use tenant association it gives error
+#      t.belongs_to :tenant, index: true, null: false
       t.string :session_id,  null: false
       t.boolean :persistent, null: true
       t.text :data

@@ -1,7 +1,9 @@
 # Copyright (C) 2012-2023 Zammad Foundation, https://zammad-foundation.org/
 
 class Session < ActiveRecord::SessionStore::Session
-  include AsMultitenant
+  # IMPORTANT!!! *****************************************
+# For multitenant, if sessions use tenant association it gives error
+#  include AsMultitenant
   include Session::SetsPersistentFlag
 
   def self.secure_flag?

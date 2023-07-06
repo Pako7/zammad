@@ -10,6 +10,17 @@ class Scheduler < ApplicationModel
 
   scope :failed_jobs, -> { where(status: 'error', active: false) }
 
+  def self.custom_find_or_create!(attrs = {})
+    record = find_or_initialize_by({
+      method: attrs[:method]
+    })
+
+    record.update!(attrs)
+  rescue StandardError => e
+    puts "Error, method: #{attrs[:method]}"
+    raise e
+  end
+
   # Jobs running more often than every 5 minutes are kept in a continuous thread.
   #
   # @example
