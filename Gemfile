@@ -52,7 +52,8 @@ gem 'graphql-batch', require: 'graphql/batch'
 
 # core - image processing
 # gem 'rszr', '0.5.2'
-gem 'rszr', git: 'https://github.com/mtgrosser/rszr'
+#gem 'rszr', git: 'https://github.com/mtgrosser/rszr'
+gem 'rszr', '0.7.1'
 
 # core - use same timezone data on any host
 gem 'tzinfo-data'
