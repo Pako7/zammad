@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$1" = "--cflags" ]; then
+  pkg-config --cflags imlib2
+elif [ "$1" = "--libs" ]; then
+  pkg-config --libs imlib2
+elif [ "$1" = "--version" ]; then
+  pkg-config --modversion imlib2
+else
+  pkg-config "$@" imlib2
+fi

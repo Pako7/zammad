@@ -20,6 +20,9 @@ You're going to love Zammad!
 
 ## Installing & Getting Started
 
+# Add this to /etc/hosts via sudo vim /etc/hosts
+127.0.0.1   h1.zammad.local
+
 https://docs.zammad.org
 
 ## Screenshots

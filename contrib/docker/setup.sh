@@ -2,9 +2,9 @@
 set -e
 
 if [ "$1" = 'builder' ]; then
-  PACKAGES="build-essential curl git libimlib2-dev libpq-dev shared-mime-info"
+  PACKAGES="build-essential curl git libimlib2-dev libexif-dev libpq-dev shared-mime-info python3"
 elif [ "$1" = 'runner' ]; then
-  PACKAGES="curl libimlib2 libpq5 nginx rsync"
+  PACKAGES="curl libimlib2 libexif12 libpq5 nginx rsync"
 fi
 
 apt-get update
@@ -20,6 +20,9 @@ if [ "$1" = 'builder' ]; then
   sed -e 's#.*adapter: postgresql#  adapter: nulldb#g' -e 's#.*username:.*#  username: postgres#g' -e 's#.*password:.*#  password: \n  host: zammad-postgresql\n#g' < contrib/packager.io/database.yml.pkgr > config/database.yml
   sed -i "/require 'rails\/all'/a require\ 'nulldb'" config/application.rb
   touch db/schema.rb
+  yarn config set network-timeout 600000 -g
+  yarn global add node-gyp@9
+  yarn install
   bundle exec rake assets:precompile
   rm -r tmp/cache
   script/build/cleanup.sh

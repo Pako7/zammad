@@ -7,6 +7,7 @@ ARG RAILS_ENV=production
 ARG ZAMMAD_TMP_DIR=/tmp/zammad
 COPY --from=node /opt /opt
 COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
 WORKDIR ${ZAMMAD_TMP_DIR}
 COPY . .
